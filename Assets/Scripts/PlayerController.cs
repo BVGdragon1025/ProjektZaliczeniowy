@@ -68,4 +68,12 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Debug.Log("Player Health: " + gameObject.GetComponent<HealthController>().CurrentHealth);
+        }
+    }
 }
