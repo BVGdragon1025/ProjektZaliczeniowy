@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137002186803672915}
+  - component: {fileID: 2700614969913169984}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -61,9 +62,59 @@ Transform:
   m_Children:
   - {fileID: 3861586341223427126}
   - {fileID: 4323086757623037127}
+  - {fileID: 7689902965179964214}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 189, z: 0}
+--- !u!114 &2700614969913169984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769388139802406377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAmmoCap: 60
+  shotDelay: 2.5
+  _currentAmmoCap: 0
+  _weaponType: 2
+  _bullet: {fileID: 7096124351904453833, guid: eb8748c9b3cf4f94cb0a086c4124e797, type: 3}
+  _canShoot: 0
+--- !u!1 &841607455906314099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7689902965179964214}
+  m_Layer: 0
+  m_Name: muzzle
+  m_TagString: Muzzle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7689902965179964214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841607455906314099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.351, z: -2.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 137002186803672915}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999904885927125724
 GameObject:
   m_ObjectHideFlags: 0

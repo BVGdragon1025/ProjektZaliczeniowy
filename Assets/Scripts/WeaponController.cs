@@ -21,11 +21,14 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private int _currentAmmoCap;
     [SerializeField] private WeaponType _weaponType = WeaponType.NoWeapons;
     [SerializeField] private GameObject _bullet;
+    [SerializeField] private bool _canShoot;
     private GameObject _muzzle;
+    [SerializeField]private float shotgunSpread;
 
     // Start is called before the first frame update
     void Start()
     {
+        _canShoot = true;
         _muzzle = GameObject.FindGameObjectWithTag("Muzzle");
 
         switch (_weaponType)
@@ -35,6 +38,7 @@ public class WeaponController : MonoBehaviour
                 break;
             case WeaponType.Shotgun:
                 _currentAmmoCap = maxAmmoCap / 5;
+                
                 break;
             case WeaponType.Carbine:
                 _currentAmmoCap = maxAmmoCap / 5;
@@ -56,15 +60,21 @@ public class WeaponController : MonoBehaviour
 
     void Shoot()
     {
-        if (_currentAmmoCap > 0)
+        if (_currentAmmoCap > 0 && _canShoot)
         {
             switch (_weaponType)
             {
-                case WeaponType.Pistol:
-                    Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+                case WeaponType.Carbine:
+                    StartCoroutine(CarbineShots());
+                    break;
+                case WeaponType.Shotgun:
+                    StartCoroutine(ShotgunShots());
+                    break;
+                default:
+                    StartCoroutine(PistolShots());
                     break;
             }
-            _currentAmmoCap--;
+            
             Debug.Log("Bullet Shot! | Ammo remaining: " + _currentAmmoCap);
             
         }
@@ -72,6 +82,45 @@ public class WeaponController : MonoBehaviour
         {
             Debug.Log("Out of ammo!");
         }
+    }
+
+    IEnumerator CarbineShots()
+    {
+        _canShoot = false;
+        for (int i = 0; i < 3; i++)
+        {
+            _currentAmmoCap--;
+            Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+            yield return new WaitForSeconds(shotDelay/3);
+            
+        }
+        yield return new WaitForSeconds(shotDelay);
+        _canShoot = true;
+        
+    }
+
+    IEnumerator PistolShots()
+    {
+        _canShoot = false;
+        Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+        _currentAmmoCap--;
+        yield return new WaitForSeconds(shotDelay);
+        _canShoot = true; 
+    }
+
+    IEnumerator ShotgunShots()
+    {
+        _canShoot = false;
+        
+        for(int i = 0; i < 5; i++)
+        {
+            float randomRangeX = Random.Range(-shotgunSpread, shotgunSpread);
+            float randomRangeY = Random.Range(-shotgunSpread, shotgunSpread);
+            Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
+        }
+        _currentAmmoCap--;
+        yield return new WaitForSeconds(shotDelay);
+        _canShoot = true;
     }
 
 }
