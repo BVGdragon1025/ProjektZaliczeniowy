@@ -15,13 +15,14 @@ public class WeaponController : MonoBehaviour
 
     public int maxAmmoCap;
     public float shotDelay;
+    public bool _canShoot = true;
     public WeaponType Weapon { get { return _weaponType; } }
 
     //Private Variables
     [SerializeField] private int _currentAmmoCap;
     [SerializeField] private WeaponType _weaponType = WeaponType.NoWeapons;
     [SerializeField] private GameObject _bullet;
-    [SerializeField] private bool _canShoot;
+    
     private GameObject _muzzle;
     [SerializeField]private float shotgunSpread;
 
