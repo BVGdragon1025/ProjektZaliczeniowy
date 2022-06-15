@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WeaponController : MonoBehaviour
 {
@@ -16,30 +17,48 @@ public class WeaponController : MonoBehaviour
     public int maxAmmoCap;
     public float shotDelay;
     public bool _canShoot = true;
+    public bool _isUnlocked;
     public WeaponType Weapon { get { return _weaponType; } }
 
     //Private Variables
     [SerializeField] private int _currentAmmoCap;
     [SerializeField] private WeaponType _weaponType = WeaponType.NoWeapons;
     [SerializeField] private GameObject _bullet;
-    
     private GameObject _muzzle;
-    [SerializeField]private float shotgunSpread;
+    [SerializeField] private float shotgunSpread;
+    [SerializeField] private GameObject ammoStats;
+
+    private void Awake()
+    {
+        foreach(WeaponController controller in GetComponentsInChildren<WeaponController>())
+        {
+            if (controller._isUnlocked)
+            {
+                ammoStats.gameObject.SetActive(true);
+            }
+            else
+            {
+                ammoStats.gameObject.SetActive(false);
+            }
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
+        ammoStats.GetComponent<TextMeshProUGUI>().text = _currentAmmoCap.ToString();
+
         _canShoot = true;
         _muzzle = GameObject.FindGameObjectWithTag("Muzzle");
 
         switch (_weaponType)
         {
             case WeaponType.Pistol:
-                _currentAmmoCap = maxAmmoCap / 10;
+                _currentAmmoCap = maxAmmoCap / 5;
                 break;
             case WeaponType.Shotgun:
                 _currentAmmoCap = maxAmmoCap / 5;
-                
                 break;
             case WeaponType.Carbine:
                 _currentAmmoCap = maxAmmoCap / 5;
@@ -48,6 +67,8 @@ public class WeaponController : MonoBehaviour
                 _currentAmmoCap = maxAmmoCap;
                 break;
         }
+
+        
     }
 
     // Update is called once per frame
@@ -57,12 +78,14 @@ public class WeaponController : MonoBehaviour
         {
             Shoot();
         }
+        ammoStats.GetComponent<TextMeshProUGUI>().text = _currentAmmoCap.ToString();
     }
 
     void Shoot()
     {
         if (_currentAmmoCap > 0 && _canShoot)
         {
+            ammoStats.GetComponent<TextMeshProUGUI>().color = Color.white;
             switch (_weaponType)
             {
                 case WeaponType.Carbine:
@@ -79,10 +102,14 @@ public class WeaponController : MonoBehaviour
             Debug.Log("Bullet Shot! | Ammo remaining: " + _currentAmmoCap);
             
         }
-        else
+        if(_currentAmmoCap <= 0)
         {
+            ammoStats.GetComponent<TextMeshProUGUI>().color = Color.red;
             Debug.Log("Out of ammo!");
         }
+
+        
+
     }
 
     IEnumerator CarbineShots()

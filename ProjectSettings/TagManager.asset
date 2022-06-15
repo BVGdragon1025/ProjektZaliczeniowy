@@ -7,6 +7,7 @@ TagManager:
   - Muzzle
   - Bullet
   - Enemy
+  - HUD
   layers:
   - Default
   - TransparentFX

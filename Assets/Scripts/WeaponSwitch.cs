@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class WeaponSwitch : MonoBehaviour
 {
-    [SerializeField] private int currentWeapon = 0; 
+    [SerializeField] private int currentWeapon = 0;
+    private bool _isUnlocked;
 
     // Start is called before the first frame update
     void Start()
     {
         SwitchWeapon();
+        _isUnlocked = gameObject.GetComponentInChildren<WeaponController>()._isUnlocked;
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class WeaponSwitch : MonoBehaviour
 
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            if(currentWeapon >= transform.childCount - 1)
+            if(currentWeapon >= transform.childCount - 1 && _isUnlocked)
             {
                 currentWeapon = 0;
             }
@@ -32,7 +34,7 @@ public class WeaponSwitch : MonoBehaviour
 
         if(Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            if(currentWeapon <= 0)
+            if(currentWeapon <= 0 && _isUnlocked)
             {
                 currentWeapon = transform.childCount - 1;
             }
@@ -46,11 +48,11 @@ public class WeaponSwitch : MonoBehaviour
         {
             currentWeapon = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >=2)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2 && _isUnlocked)
         {
             currentWeapon = 1;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 2)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3 && _isUnlocked)
         {
             currentWeapon = 2;
         }
@@ -67,7 +69,7 @@ public class WeaponSwitch : MonoBehaviour
         int i = 0;
         foreach(Transform weapon in transform)
         {
-            if(i == currentWeapon)
+            if(i == currentWeapon && _isUnlocked)
             {
                 weapon.gameObject.SetActive(true);
                 weapon.gameObject.GetComponent<WeaponController>()._canShoot = true;
