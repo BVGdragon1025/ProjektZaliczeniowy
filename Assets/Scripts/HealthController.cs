@@ -25,8 +25,10 @@ public class HealthController : MonoBehaviour
 
     public void ChangeHealth(int deltaHealth)
     {
+
         _currentHealth = Mathf.Clamp(_currentHealth + deltaHealth, 0, maxHealth);
         CheckHealth();
+
     }
 
     public void CheckHealth()

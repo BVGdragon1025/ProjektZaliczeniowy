@@ -17,8 +17,10 @@ public class WeaponController : MonoBehaviour
     public int maxAmmoCap;
     public float shotDelay;
     public bool _canShoot = true;
-    public bool _isUnlocked;
     public WeaponType Weapon { get { return _weaponType; } }
+    public int CurrentAmmo { get { return _currentAmmoCap; } }
+    public GameObject ammoStats;
+    public GameObject weaponCrosshair;
 
     //Private Variables
     [SerializeField] private int _currentAmmoCap;
@@ -26,49 +28,20 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     private GameObject _muzzle;
     [SerializeField] private float shotgunSpread;
-    [SerializeField] private GameObject ammoStats;
-
-    private void Awake()
-    {
-        foreach(WeaponController controller in GetComponentsInChildren<WeaponController>())
-        {
-            if (controller._isUnlocked)
-            {
-                ammoStats.gameObject.SetActive(true);
-            }
-            else
-            {
-                ammoStats.gameObject.SetActive(false);
-            }
-        }
-    }
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        ammoStats.gameObject.SetActive(true);
         ammoStats.GetComponent<TextMeshProUGUI>().text = _currentAmmoCap.ToString();
+        weaponCrosshair.gameObject.SetActive(true);
 
         _canShoot = true;
         _muzzle = GameObject.FindGameObjectWithTag("Muzzle");
 
-        switch (_weaponType)
-        {
-            case WeaponType.Pistol:
-                _currentAmmoCap = maxAmmoCap / 5;
-                break;
-            case WeaponType.Shotgun:
-                _currentAmmoCap = maxAmmoCap / 5;
-                break;
-            case WeaponType.Carbine:
-                _currentAmmoCap = maxAmmoCap / 5;
-                break;
-            default:
-                _currentAmmoCap = maxAmmoCap;
-                break;
-        }
-
-        
+        _currentAmmoCap = maxAmmoCap / 5;
     }
 
     // Update is called once per frame
@@ -107,8 +80,6 @@ public class WeaponController : MonoBehaviour
             ammoStats.GetComponent<TextMeshProUGUI>().color = Color.red;
             Debug.Log("Out of ammo!");
         }
-
-        
 
     }
 
@@ -149,6 +120,15 @@ public class WeaponController : MonoBehaviour
         _currentAmmoCap--;
         yield return new WaitForSeconds(shotDelay);
         _canShoot = true;
+    }
+
+    public void ChangeAmmo(int amount)
+    {
+        if(_currentAmmoCap != maxAmmoCap)
+        {
+            _currentAmmoCap = Mathf.Clamp(_currentAmmoCap + amount, 0, maxAmmoCap);
+        }
+        
     }
 
 }

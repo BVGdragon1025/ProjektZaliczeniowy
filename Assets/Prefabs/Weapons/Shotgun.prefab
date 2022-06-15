@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2700614969913169984}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: GunShotgun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,6 @@ MonoBehaviour:
   maxAmmoCap: 60
   shotDelay: 1.5
   _canShoot: 0
-  _isUnlocked: 0
   _currentAmmoCap: 0
   _weaponType: 2
   _bullet: {fileID: 7096124351904453833, guid: eb8748c9b3cf4f94cb0a086c4124e797, type: 3}
