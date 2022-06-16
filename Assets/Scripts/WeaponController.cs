@@ -14,16 +14,15 @@ public class WeaponController : MonoBehaviour
         Carbine
     }
 
-    public int maxAmmoCap;
+    //public int maxAmmoCap;
+    public AmmoHolder ammoHolder;
     public float shotDelay;
     public bool _canShoot = true;
     public WeaponType Weapon { get { return _weaponType; } }
-    public int CurrentAmmo { get { return _currentAmmoCap; } }
     public GameObject ammoStats;
     public GameObject weaponCrosshair;
 
     //Private Variables
-    [SerializeField] private int _currentAmmoCap;
     [SerializeField] private WeaponType _weaponType = WeaponType.NoWeapons;
     [SerializeField] private GameObject _bullet;
     private GameObject _muzzle;
@@ -35,13 +34,17 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         ammoStats.gameObject.SetActive(true);
-        ammoStats.GetComponent<TextMeshProUGUI>().text = _currentAmmoCap.ToString();
+        ammoStats.GetComponent<TextMeshProUGUI>().text = ammoHolder.ammoCount.ToString();
         weaponCrosshair.gameObject.SetActive(true);
 
         _canShoot = true;
         _muzzle = GameObject.FindGameObjectWithTag("Muzzle");
 
-        _currentAmmoCap = maxAmmoCap / 5;
+        if(ammoHolder.ammoCount <= 0)
+        {
+            ammoHolder.ammoCount = ammoHolder.maxAmmoCount / 5;
+        }
+
     }
 
     // Update is called once per frame
@@ -51,12 +54,12 @@ public class WeaponController : MonoBehaviour
         {
             Shoot();
         }
-        ammoStats.GetComponent<TextMeshProUGUI>().text = _currentAmmoCap.ToString();
+        ammoStats.GetComponent<TextMeshProUGUI>().text = ammoHolder.ammoCount.ToString();
     }
 
     void Shoot()
     {
-        if (_currentAmmoCap > 0 && _canShoot)
+        if (ammoHolder.ammoCount > 0 && _canShoot)
         {
             ammoStats.GetComponent<TextMeshProUGUI>().color = Color.white;
             switch (_weaponType)
@@ -72,10 +75,10 @@ public class WeaponController : MonoBehaviour
                     break;
             }
             
-            Debug.Log("Bullet Shot! | Ammo remaining: " + _currentAmmoCap);
+            Debug.Log("Bullet Shot! | Ammo remaining: " + ammoHolder.ammoCount);
             
         }
-        if(_currentAmmoCap <= 0)
+        if(ammoHolder.ammoCount <= 0)
         {
             ammoStats.GetComponent<TextMeshProUGUI>().color = Color.red;
             Debug.Log("Out of ammo!");
@@ -88,7 +91,7 @@ public class WeaponController : MonoBehaviour
         _canShoot = false;
         for (int i = 0; i < 3; i++)
         {
-            _currentAmmoCap--;
+            ammoHolder.ammoCount--;
             Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
             yield return new WaitForSeconds(shotDelay/3);
             
@@ -102,7 +105,7 @@ public class WeaponController : MonoBehaviour
     {
         _canShoot = false;
         Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
-        _currentAmmoCap--;
+        ammoHolder.ammoCount--;
         yield return new WaitForSeconds(shotDelay);
         _canShoot = true; 
     }
@@ -117,18 +120,11 @@ public class WeaponController : MonoBehaviour
             float randomRangeY = Random.Range(-shotgunSpread, shotgunSpread);
             Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
         }
-        _currentAmmoCap--;
+        ammoHolder.ammoCount--;
         yield return new WaitForSeconds(shotDelay);
         _canShoot = true;
     }
 
-    public void ChangeAmmo(int amount)
-    {
-        if(_currentAmmoCap != maxAmmoCap)
-        {
-            _currentAmmoCap = Mathf.Clamp(_currentAmmoCap + amount, 0, maxAmmoCap);
-        }
-        
-    }
+    
 
 }

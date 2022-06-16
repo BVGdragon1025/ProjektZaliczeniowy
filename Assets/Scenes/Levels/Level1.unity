@@ -227,6 +227,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &560532218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6617933871388943902, guid: e6ee0e77b0009704b999ccfd17d275b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5885067178778985865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &677862744
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +421,7 @@ GameObject:
   - component: {fileID: 990643199}
   - component: {fileID: 990643198}
   - component: {fileID: 990643197}
-  - component: {fileID: 990643196}
+  - component: {fileID: 990643201}
   m_Layer: 0
   m_Name: AmmoPIstolPickup (1)
   m_TagString: Untagged
@@ -423,20 +429,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &990643196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990643195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70788aac8628ca4419c4908872d339e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 2
-  amount: 24
 --- !u!65 &990643197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -515,6 +507,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &990643201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990643195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866ce496ebaffbb44b6236f0b67dfb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 48
+  _gunAmmoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
 --- !u!1 &990712330 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5885067178358839171, guid: e6ee0e77b0009704b999ccfd17d275b6,
@@ -542,6 +548,7 @@ GameObject:
   - component: {fileID: 1253152771}
   - component: {fileID: 1253152770}
   - component: {fileID: 1253152772}
+  - component: {fileID: 1253152773}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -682,6 +689,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   _currentHealth: 0
+--- !u!114 &1253152773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253152765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d7326824e2eee418e665c73146961b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1331925471
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +828,7 @@ GameObject:
   - component: {fileID: 1512647746}
   - component: {fileID: 1512647745}
   - component: {fileID: 1512647744}
-  - component: {fileID: 1512647743}
+  - component: {fileID: 1512647748}
   m_Layer: 0
   m_Name: AmmoPIstolPickup (3)
   m_TagString: Untagged
@@ -817,20 +836,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1512647743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1512647742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70788aac8628ca4419c4908872d339e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 1
-  amount: 90
 --- !u!65 &1512647744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -909,6 +914,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1512647748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512647742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866ce496ebaffbb44b6236f0b67dfb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 90
+  _gunAmmoHolder: {fileID: 11400000, guid: d9843b832ca3b56439be90409790cbd6, type: 2}
 --- !u!1 &1572728380
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +940,7 @@ GameObject:
   - component: {fileID: 1572728384}
   - component: {fileID: 1572728383}
   - component: {fileID: 1572728382}
-  - component: {fileID: 1572728381}
+  - component: {fileID: 1572728386}
   m_Layer: 0
   m_Name: AmmoPIstolPickup
   m_TagString: Untagged
@@ -929,20 +948,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1572728381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572728380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70788aac8628ca4419c4908872d339e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 1
-  amount: 24
 --- !u!65 &1572728382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1021,6 +1026,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572728386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572728380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866ce496ebaffbb44b6236f0b67dfb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 24
+  _gunAmmoHolder: {fileID: 11400000, guid: d9843b832ca3b56439be90409790cbd6, type: 2}
 --- !u!1 &1672168113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1213,7 @@ GameObject:
   - component: {fileID: 1713000880}
   - component: {fileID: 1713000879}
   - component: {fileID: 1713000878}
-  - component: {fileID: 1713000877}
+  - component: {fileID: 1713000882}
   m_Layer: 0
   m_Name: AmmoPIstolPickup (2)
   m_TagString: Untagged
@@ -1202,20 +1221,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1713000877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713000876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70788aac8628ca4419c4908872d339e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 3
-  amount: 90
 --- !u!65 &1713000878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1294,6 +1299,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713000882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713000876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866ce496ebaffbb44b6236f0b67dfb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 90
+  _gunAmmoHolder: {fileID: 11400000, guid: 20d00e0649dd0624fbd19151c90bed80, type: 2}
 --- !u!1 &1922073214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,11 +1539,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113308587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70788aac8628ca4419c4908872d339e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 10d7d8f714a28f64eb7d8883c4ced5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
-  amount: 10
+  amountOfHealth: 10
 --- !u!1001 &462748976764878126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1602,6 +1620,12 @@ PrefabInstance:
       propertyPath: ammoStats
       value: 
       objectReference: {fileID: 990712330}
+    - target: {fileID: 2700614969913169984, guid: 727df5d1c66383c4fbe3db5bd83c78a3,
+        type: 3}
+      propertyPath: ammoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1,
+        type: 2}
     - target: {fileID: 2700614969913169984, guid: 727df5d1c66383c4fbe3db5bd83c78a3,
         type: 3}
       propertyPath: _isUnlocked
@@ -1705,9 +1729,15 @@ PrefabInstance:
       objectReference: {fileID: 900538209}
     - target: {fileID: 6968491725401035834, guid: 8662167e2feef0e4296e5d7d297d15dd,
         type: 3}
+      propertyPath: ammoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: d9843b832ca3b56439be90409790cbd6,
+        type: 2}
+    - target: {fileID: 6968491725401035834, guid: 8662167e2feef0e4296e5d7d297d15dd,
+        type: 3}
       propertyPath: weaponCrosshair
       value: 
-      objectReference: {fileID: 3702846}
+      objectReference: {fileID: 560532218}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8662167e2feef0e4296e5d7d297d15dd, type: 3}
 --- !u!1001 &4546367573412656416
@@ -1722,6 +1752,12 @@ PrefabInstance:
       propertyPath: ammoStats
       value: 
       objectReference: {fileID: 1146300405}
+    - target: {fileID: 2489905683424405686, guid: c16d4b7e43b423841a88fd9087c479a6,
+        type: 3}
+      propertyPath: ammoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: 20d00e0649dd0624fbd19151c90bed80,
+        type: 2}
     - target: {fileID: 2489905683424405686, guid: c16d4b7e43b423841a88fd9087c479a6,
         type: 3}
       propertyPath: _isUnlocked
@@ -1927,6 +1963,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5885067178523285644, guid: e6ee0e77b0009704b999ccfd17d275b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885067179101469706, guid: e6ee0e77b0009704b999ccfd17d275b6,
         type: 3}
       propertyPath: m_IsActive
       value: 0

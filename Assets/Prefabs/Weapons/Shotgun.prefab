@@ -79,13 +79,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmoCap: 60
+  ammoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
   shotDelay: 1.5
   _canShoot: 0
-  _currentAmmoCap: 0
+  ammoStats: {fileID: 0}
+  weaponCrosshair: {fileID: 0}
   _weaponType: 2
   _bullet: {fileID: 7096124351904453833, guid: eb8748c9b3cf4f94cb0a086c4124e797, type: 3}
   shotgunSpread: 0.2
-  ammoStats: {fileID: 0}
 --- !u!1 &841607455906314099
 GameObject:
   m_ObjectHideFlags: 0

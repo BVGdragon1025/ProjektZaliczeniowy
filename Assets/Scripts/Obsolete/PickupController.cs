@@ -40,7 +40,7 @@ public class PickupController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (_type)
+        /*switch (_type)
         {
             case PickupTypes.Health:
                 if(other.tag == "Player" && other.gameObject.GetComponent<HealthController>().CurrentHealth < 100)
@@ -78,7 +78,7 @@ public class PickupController : MonoBehaviour
                 }
                 break;
             
-        }
+        }*/
 
     }
 }
