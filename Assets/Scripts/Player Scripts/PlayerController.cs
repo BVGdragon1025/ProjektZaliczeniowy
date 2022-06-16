@@ -22,19 +22,26 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
+    [SerializeField] HealthController _healthController;
+    private UIController _uIController;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-       characterController = GetComponent<CharacterController>();
-       Cursor.lockState = CursorLockMode.Locked;
-       Cursor.visible = false;
+        _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        _healthController = GetComponent<HealthController>();
+        characterController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _uIController.DisplayHealth(_healthController.CurrentHealth);
+
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
@@ -73,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            _healthController.ChangeHealth(-collision.gameObject.GetComponent<BulletController>().damage);
             Debug.Log("Player Health: " + gameObject.GetComponent<HealthController>().CurrentHealth);
         }
     }

@@ -10,10 +10,13 @@ public class HealthController : MonoBehaviour
 
     //Private Variables
     [SerializeField] private int _currentHealth;
+    UIController _uIController;
 
     // Start is called before the first frame update
     void Start()
     {
+        _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        
         _currentHealth = maxHealth;
     }
 
@@ -27,6 +30,7 @@ public class HealthController : MonoBehaviour
     {
 
         _currentHealth = Mathf.Clamp(_currentHealth + deltaHealth, 0, maxHealth);
+        _uIController.DisplayHealth(_currentHealth);
         CheckHealth();
 
     }

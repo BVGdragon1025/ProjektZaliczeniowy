@@ -45,11 +45,11 @@ GameObject:
   - component: {fileID: 2489905683424405686}
   m_Layer: 0
   m_Name: Carbine
-  m_TagString: GunCarbine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6718594320197781011
 Transform:
   m_ObjectHideFlags: 0
@@ -132,11 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmoCap: 150
+  ammoHolder: {fileID: 0}
   shotDelay: 1
   _canShoot: 0
-  _currentAmmoCap: 0
+  ammoStats: {fileID: 0}
+  weaponCrosshair: {fileID: 0}
   _weaponType: 3
   _bullet: {fileID: 7096124351904453833, guid: fad30037d6da153498083265dbd2f73e, type: 3}
   shotgunSpread: 0
-  ammoStats: {fileID: 0}

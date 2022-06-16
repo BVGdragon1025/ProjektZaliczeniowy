@@ -19,23 +19,17 @@ public class WeaponController : MonoBehaviour
     public float shotDelay;
     public bool _canShoot = true;
     public WeaponType Weapon { get { return _weaponType; } }
-    public GameObject ammoStats;
-    public GameObject weaponCrosshair;
 
     //Private Variables
     [SerializeField] private WeaponType _weaponType = WeaponType.NoWeapons;
     [SerializeField] private GameObject _bullet;
     private GameObject _muzzle;
     [SerializeField] private float shotgunSpread;
-    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        ammoStats.gameObject.SetActive(true);
-        ammoStats.GetComponent<TextMeshProUGUI>().text = ammoHolder.ammoCount.ToString();
-        weaponCrosshair.gameObject.SetActive(true);
 
         _canShoot = true;
         _muzzle = GameObject.FindGameObjectWithTag("Muzzle");
@@ -54,14 +48,12 @@ public class WeaponController : MonoBehaviour
         {
             Shoot();
         }
-        ammoStats.GetComponent<TextMeshProUGUI>().text = ammoHolder.ammoCount.ToString();
     }
 
     void Shoot()
     {
         if (ammoHolder.ammoCount > 0 && _canShoot)
         {
-            ammoStats.GetComponent<TextMeshProUGUI>().color = Color.white;
             switch (_weaponType)
             {
                 case WeaponType.Carbine:
@@ -75,12 +67,13 @@ public class WeaponController : MonoBehaviour
                     break;
             }
             
-            Debug.Log("Bullet Shot! | Ammo remaining: " + ammoHolder.ammoCount);
             
         }
+        
+        Debug.Log("Bullet Shot! | Ammo remaining: " + ammoHolder.ammoCount);
+        
         if(ammoHolder.ammoCount <= 0)
         {
-            ammoStats.GetComponent<TextMeshProUGUI>().color = Color.red;
             Debug.Log("Out of ammo!");
         }
 
@@ -91,9 +84,13 @@ public class WeaponController : MonoBehaviour
         _canShoot = false;
         for (int i = 0; i < 3; i++)
         {
-            ammoHolder.ammoCount--;
-            Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
-            yield return new WaitForSeconds(shotDelay/3);
+            if(ammoHolder.ammoCount > 0)
+            {
+                ammoHolder.ammoCount--;
+                Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+                yield return new WaitForSeconds(shotDelay/3);
+            }
+            
             
         }
         yield return new WaitForSeconds(shotDelay);

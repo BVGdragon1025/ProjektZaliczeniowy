@@ -19,7 +19,7 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && other.gameObject.GetComponent<HealthController>().CurrentHealth < 100)
+        if (other.tag == "Player" && other.gameObject.GetComponent<HealthController>().CurrentHealth < other.gameObject.GetComponent<HealthController>().maxHealth)
         {
             _playerHealthController.ChangeHealth(amountOfHealth);
             Destroy(gameObject);

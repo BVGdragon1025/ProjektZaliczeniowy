@@ -6,10 +6,12 @@ public class WeaponSwitch : MonoBehaviour
 {
     [SerializeField] private int currentWeapon = 0;
     private bool _isUnlocked;
+    private UIController _uIController;
 
     // Start is called before the first frame update
     void Start()
     {
+        _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
         SwitchWeapon();
     }
 
@@ -17,8 +19,9 @@ public class WeaponSwitch : MonoBehaviour
     void Update()
     {
         int previousWeapon = currentWeapon;
+        AmmoHolder ammoHolder = transform.GetChild(currentWeapon).GetComponent<WeaponController>().ammoHolder;
 
-        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if(currentWeapon >= transform.childCount - 1)
             {
@@ -61,6 +64,8 @@ public class WeaponSwitch : MonoBehaviour
             SwitchWeapon();
         }
 
+        _uIController.UpdateAmmoDisplay(currentWeapon, ammoHolder);
+
     }
 
     void SwitchWeapon()
@@ -72,14 +77,14 @@ public class WeaponSwitch : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 weapon.gameObject.GetComponent<WeaponController>()._canShoot = true;
-                weapon.gameObject.GetComponent<WeaponController>().ammoStats.SetActive(true);
-                weapon.gameObject.GetComponent<WeaponController>().weaponCrosshair.SetActive(true);
+                _uIController.DisplayAmmoHUD(i, true, weapon.gameObject.GetComponent<WeaponController>().ammoHolder);
+                _uIController.DisplayCrosshair(i, true);
             }
             else
             {
                 weapon.gameObject.SetActive(false);
-                weapon.gameObject.GetComponent<WeaponController>().ammoStats.SetActive(false);
-                weapon.gameObject.GetComponent<WeaponController>().weaponCrosshair.SetActive(false);
+                _uIController.DisplayAmmoHUD(i, false, weapon.gameObject.GetComponent<WeaponController>().ammoHolder);
+                _uIController.DisplayCrosshair(i, false);
             }
             i++;
         }

@@ -43,11 +43,11 @@ GameObject:
   - component: {fileID: 2700614969913169984}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: GunShotgun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &137002186803672915
 Transform:
   m_ObjectHideFlags: 0
@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmoCap: 60
   ammoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
   shotDelay: 1.5
   _canShoot: 0

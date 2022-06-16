@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6968491725401035834}
   m_Layer: 0
   m_Name: Pistol
-  m_TagString: GunPistol
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmoCap: 120
   ammoHolder: {fileID: 11400000, guid: d9843b832ca3b56439be90409790cbd6, type: 2}
   shotDelay: 1
   _canShoot: 0

@@ -8,9 +8,7 @@ TagManager:
   - Bullet
   - Enemy
   - HUD
-  - GunPistol
-  - GunShotgun
-  - GunCarbine
+  - UIController
   layers:
   - Default
   - TransparentFX
