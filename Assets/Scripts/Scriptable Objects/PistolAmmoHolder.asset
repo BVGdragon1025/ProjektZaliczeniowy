@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmoCount: 120
   ammoCount: 0
+  isWeaponUnlocked: 1

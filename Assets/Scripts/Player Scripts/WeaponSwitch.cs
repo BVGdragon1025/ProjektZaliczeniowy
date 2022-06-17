@@ -73,7 +73,7 @@ public class WeaponSwitch : MonoBehaviour
         int i = 0;
         foreach(Transform weapon in transform)
         {
-            if(i == currentWeapon)
+            if(i == currentWeapon && weapon.GetComponent<WeaponController>().ammoHolder.isWeaponUnlocked)
             {
                 weapon.gameObject.SetActive(true);
                 weapon.gameObject.GetComponent<WeaponController>()._canShoot = true;

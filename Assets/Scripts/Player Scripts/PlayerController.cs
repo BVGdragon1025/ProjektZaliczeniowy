@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
-    [SerializeField] HealthController _healthController;
+    HealthController _healthController;
     private UIController _uIController;
     
 

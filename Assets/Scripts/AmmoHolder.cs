@@ -6,4 +6,5 @@ public class AmmoHolder : ScriptableObject
 {
     public int maxAmmoCount;
     public int ammoCount;
+    public bool isWeaponUnlocked;
 }
