@@ -17,6 +17,11 @@ public class HealthPickup : MonoBehaviour
         _playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
     }
 
+    private void Update()
+    {
+        transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && other.gameObject.GetComponent<HealthController>().CurrentHealth < other.gameObject.GetComponent<HealthController>().maxHealth)

@@ -12,7 +12,7 @@ public class AmmoPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

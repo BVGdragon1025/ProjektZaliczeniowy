@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class WeaponSwitch : MonoBehaviour
 {
-    [SerializeField] private int currentWeapon = 0;
+    //Public Variables
+    public int currentWeapon = 0;
+
+    //Private Variables
     private bool _isUnlocked;
     private UIController _uIController;
 
@@ -68,7 +71,7 @@ public class WeaponSwitch : MonoBehaviour
 
     }
 
-    void SwitchWeapon()
+    public void SwitchWeapon()
     {
         int i = 0;
         foreach(Transform weapon in transform)

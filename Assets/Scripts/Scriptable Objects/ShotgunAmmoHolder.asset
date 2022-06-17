@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShotgunAmmoHolder
   m_EditorClassIdentifier: 
   maxAmmoCount: 60
-  ammoCount: 11
-  isWeaponUnlocked: 0
+  ammoCount: 23
+  isWeaponUnlocked: 1
