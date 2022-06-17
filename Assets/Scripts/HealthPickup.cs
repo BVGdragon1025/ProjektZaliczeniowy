@@ -27,7 +27,7 @@ public class HealthPickup : MonoBehaviour
         if (other.tag == "Player" && other.gameObject.GetComponent<HealthController>().CurrentHealth < other.gameObject.GetComponent<HealthController>().maxHealth)
         {
             _playerHealthController.ChangeHealth(amountOfHealth);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {

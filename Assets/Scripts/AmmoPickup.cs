@@ -12,6 +12,11 @@ public class AmmoPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    private void Update()
+    {
         transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
     }
 
@@ -20,7 +25,7 @@ public class AmmoPickup : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<AmmoController>().ChangeAmmo(_gunAmmoHolder, amount);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
