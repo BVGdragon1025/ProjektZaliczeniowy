@@ -47,7 +47,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player") && other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {   
             other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
             Destroy(gameObject);

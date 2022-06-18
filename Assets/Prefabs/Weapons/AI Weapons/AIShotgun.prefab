@@ -40,14 +40,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137002186803672915}
-  - component: {fileID: 2700614969913169984}
+  - component: {fileID: -4167434222695846087}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: AIShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &137002186803672915
 Transform:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769388139802406377}
-  m_LocalRotation: {x: 0, y: 0.99691737, z: -0, w: -0.07845902}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.5, y: 1.33, z: 0.7}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
@@ -65,8 +65,8 @@ Transform:
   - {fileID: 4323086757623037127}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 189, z: 0}
---- !u!114 &2700614969913169984
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &-4167434222695846087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,15 +75,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 769388139802406377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fbf19ad55e1bd448b7afe448a29e660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
   shotDelay: 1.5
-  canShoot: 1
-  _weaponType: 2
-  _bullet: {fileID: 7096124351904453833, guid: eb8748c9b3cf4f94cb0a086c4124e797, type: 3}
-  shotgunSpread: 0.2
+  canShoot: 0
+  _weaponType: 1
+  _bullet: {fileID: 7096124351904453833, guid: 0b0b38d87d8c667469cca489f85a8dfa, type: 3}
+  shotgunSpread: 0
 --- !u!1 &841607455906314099
 GameObject:
   m_ObjectHideFlags: 0

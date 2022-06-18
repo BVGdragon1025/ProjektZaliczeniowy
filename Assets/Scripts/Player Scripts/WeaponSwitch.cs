@@ -79,7 +79,7 @@ public class WeaponSwitch : MonoBehaviour
             if(i == currentWeapon && weapon.GetComponent<WeaponController>().ammoHolder.isWeaponUnlocked)
             {
                 weapon.gameObject.SetActive(true);
-                weapon.gameObject.GetComponent<WeaponController>()._canShoot = true;
+                weapon.gameObject.GetComponent<WeaponController>().canShoot = true;
                 _uIController.DisplayAmmoHUD(i, true, weapon.gameObject.GetComponent<WeaponController>().ammoHolder);
                 _uIController.DisplayCrosshair(i, true);
             }

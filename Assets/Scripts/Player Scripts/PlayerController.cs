@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
-        _healthController = GetComponent<HealthController>();
+        _healthController = gameObject.GetComponent<HealthController>();
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            _healthController.ChangeHealth(-collision.gameObject.GetComponent<BulletController>().damage);
+            _healthController.ChangeHealth(-collision.gameObject.GetComponent<EnemyBullet>().damage);
             Debug.Log("Player Health: " + gameObject.GetComponent<HealthController>().CurrentHealth);
         }
     }
