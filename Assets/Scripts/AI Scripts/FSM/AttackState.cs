@@ -25,7 +25,7 @@ public class AttackState : MonoBehaviour, IFSMState
 
     private void Update()
     {
-        if(_weaponController.gameObject.name == "AIShotgun")
+        if(gameObject.transform.GetChild(1).name == "AIShotgun")
         {
             _weaponController.Shoot();
         }
@@ -46,6 +46,7 @@ public class AttackState : MonoBehaviour, IFSMState
         Vector3 Dir = (_player.position - transform.position).normalized;
         Dir.y = 0;
         transform.rotation = Quaternion.LookRotation(Dir, Vector3.up);
+        
 
         if(_healthController.CurrentHealth != 0)
         {

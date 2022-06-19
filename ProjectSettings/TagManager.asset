@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - HUD
   - UIController
+  - SceneManager
+  - PistolAmmo
+  - ShotgunAmmo
+  - CarbineAmmo
   layers:
   - Default
   - TransparentFX

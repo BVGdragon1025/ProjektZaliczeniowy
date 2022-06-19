@@ -45,7 +45,16 @@ public class HealthController : MonoBehaviour
 
     private void CharacterDie()
     {
-        Debug.Log("Character died! | Character name: " + gameObject.name);
+        if (gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Character died! | Character name: " + gameObject.name);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Player Died!");
+        }
+        
     }
 
 }
