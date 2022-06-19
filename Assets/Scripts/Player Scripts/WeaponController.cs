@@ -34,11 +34,6 @@ public class WeaponController : MonoBehaviour
         canShoot = true;
         _muzzle = gameObject.transform.GetChild(0);
 
-        if(ammoHolder.ammoCount <= 0)
-        {
-            ammoHolder.ammoCount = ammoHolder.maxAmmoCount / 5;
-        }
-
     }
 
     // Update is called once per frame

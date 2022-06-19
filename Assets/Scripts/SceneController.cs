@@ -68,7 +68,7 @@ public class SceneController : MonoBehaviour
            
         }
 
-        if(_killCount == _killsToUnlockCarbine && !ammoHolders[0].isWeaponUnlocked)
+        if(_killCount == _killsToUnlockCarbine && !ammoHolders[1].isWeaponUnlocked)
         {
             gunPickups[1].SetActive(true);
             
@@ -80,7 +80,16 @@ public class SceneController : MonoBehaviour
         for(int i = 0; i < ammoHolders.Length; i++)
         {
             ammoHolders[i].isWeaponUnlocked = false;
-            ammoHolders[i].ammoCount = 0;
+            if (ammoHolders[i].name == "PistolAmmoHolder")
+            {
+                ammoHolders[i].ammoCount = ammoHolders[i].maxAmmoCount / 5;
+                Debug.Log(ammoHolders[i].name);
+            }
+            else
+            {
+                ammoHolders[i].ammoCount = 0;
+            }
+            
         }
     }
 
@@ -154,7 +163,7 @@ public class SceneController : MonoBehaviour
             {
                 if (spawnersList[i].activeInHierarchy && spawnersList[i].GetComponent<SpawnController>().spawnInterval >= spawnDelay)
                 {
-                    spawnersList[i].GetComponent<SpawnController>().spawnInterval--;
+                    spawnersList[i].GetComponent<SpawnController>().spawnInterval -= 0.5f;
                 }
             }
         }

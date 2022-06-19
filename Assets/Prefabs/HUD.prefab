@@ -34,6 +34,7 @@ RectTransform:
   - {fileID: 5885067178202402830}
   - {fileID: 5885067179504374968}
   - {fileID: 5885067178853742786}
+  - {fileID: 3834441754646676894}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1353,3 +1354,54 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8699868192304385146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3834441754646676894}
+  - component: {fileID: 5810088514779538634}
+  m_Layer: 0
+  m_Name: UIController
+  m_TagString: UIController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3834441754646676894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8699868192304385146}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -407, y: -229, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5885067178086786529}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5810088514779538634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8699868192304385146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd79ce7b9c6f11c4da3cbbe71e8e01a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pistolAmmoCounter: {fileID: 5885067178465794794}
+  _shotgunAmmoCounter: {fileID: 5885067178358839173}
+  _carbineAmmoCounter: {fileID: 5885067179782414974}
+  _healthCounter: {fileID: 5885067179279375886}
+  _pistolCrosshair: {fileID: 6617933871388943902}
+  _shotgunCrosshair: {fileID: 5885067179101469706}
+  _carbineCrosshair: {fileID: 5885067178523285644}
