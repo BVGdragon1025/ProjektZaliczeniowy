@@ -25,12 +25,13 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     private Transform _muzzle;
     [SerializeField] private float shotgunSpread;
+    private SceneController _sceneController;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _sceneController = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneController>();
         canShoot = true;
         _muzzle = gameObject.transform.GetChild(0);
 
@@ -39,7 +40,7 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !_sceneController.isInMenu)
         {
             Shoot();
         }

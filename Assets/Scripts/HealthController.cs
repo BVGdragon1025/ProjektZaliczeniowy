@@ -12,6 +12,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] private int _currentHealth;
     UIController _uIController;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,9 +51,16 @@ public class HealthController : MonoBehaviour
             Debug.Log("Character died! | Character name: " + gameObject.name);
             Destroy(gameObject);
         }
-        else
+        else if(gameObject.CompareTag("Player"))
         {
             Debug.Log("Player Died!");
+            _uIController.ShowDeathScreen();
+            gameObject.GetComponent<PlayerController>().canMove = false;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Debug.Log("Something went wrong with character dying. Maybe you forgot to add another tag?");
         }
         
     }

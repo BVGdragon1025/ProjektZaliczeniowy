@@ -4998,6 +4998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899bc711ff11e5143bc5f09f3d9a5c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 6
+  damage: 3
   speed: 15
   range: 100

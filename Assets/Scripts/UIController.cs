@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject _pistolCrosshair;
     [SerializeField] GameObject _shotgunCrosshair;
     [SerializeField] GameObject _carbineCrosshair;
+    [SerializeField] GameObject _gameOverScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -120,6 +121,13 @@ public class UIController : MonoBehaviour
         {
             ammoText.color = Color.white;
         }
+    }
+
+    public void ShowDeathScreen()
+    {
+        _gameOverScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 }

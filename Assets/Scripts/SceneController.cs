@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class SceneController : MonoBehaviour
     public GameObject[] healthPickups;
     public GameObject[] gunPickups;
     public AmmoHolder[] ammoHolders;
-
+    [HideInInspector]public bool isInMenu = false;
 
     //Private Variables
     [SerializeField] private float pickupsDelay;
@@ -23,6 +25,9 @@ public class SceneController : MonoBehaviour
     [SerializeField] private int _spawnLimit;
     [SerializeField] private int _killsToUnlockShotgun;
     [SerializeField] private int _killsToUnlockCarbine;
+    [SerializeField] private TextMeshProUGUI[] _scoreText;
+    
+    [SerializeField] GameObject _pauseMenu;
 
     
 
@@ -51,13 +56,30 @@ public class SceneController : MonoBehaviour
         {
             StopSpawners(false);
         }
+        
+        for(int i = 0; i < _scoreText.Length; i++)
+        {
+            _scoreText[i].text = playerScore.ToString();
+        }
 
+        if(Input.GetKeyDown(KeyCode.Escape) && !isInMenu)
+        {
+            ShowPauseMenu();
+            isInMenu = true;
+
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && isInMenu)
+        {
+            ContinueGame();
+            isInMenu = false;
+        }
     }
 
 
     public void CountKill()
     {
         _killCount++;
+        
     }
 
     private void UnlockWeapon()
@@ -140,7 +162,7 @@ public class SceneController : MonoBehaviour
 
         for (int i = 0; i < ammoPickups.Length; i++)
         {
-            if (ammoPickups[i].CompareTag("ShotgunAmmo") && !ammoPickups[i].activeInHierarchy && _killCount == _killsToUnlockShotgun)
+            if (ammoPickups[i].CompareTag("ShotgunAmmo") && !ammoPickups[i].activeInHierarchy && ammoHolders[0].isWeaponUnlocked)
             {
                 ammoPickups[i].SetActive(true);
             }
@@ -148,7 +170,7 @@ public class SceneController : MonoBehaviour
 
         for (int i = 0; i < ammoPickups.Length; i++)
         {
-            if (ammoPickups[i].CompareTag("CarbineAmmo") && !ammoPickups[i].activeInHierarchy && _killCount >= _killsToUnlockCarbine)
+            if (ammoPickups[i].CompareTag("CarbineAmmo") && !ammoPickups[i].activeInHierarchy && ammoHolders[1].isWeaponUnlocked)
             {
                 ammoPickups[i].SetActive(true);
             }
@@ -167,6 +189,37 @@ public class SceneController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+        _pauseMenu.SetActive(false);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ShowPauseMenu()
+    {
+        Time.timeScale = 0;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        _pauseMenu.SetActive(true);
+    }
+
+    public void GoToMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
