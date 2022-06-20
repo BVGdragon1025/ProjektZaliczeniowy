@@ -15,6 +15,7 @@ public class SceneController : MonoBehaviour
     public GameObject[] healthPickups;
     public GameObject[] gunPickups;
     public AmmoHolder[] ammoHolders;
+    public GameObject[] gunMessages;
     [HideInInspector]public bool isInMenu = false;
 
     //Private Variables
@@ -26,7 +27,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private int _killsToUnlockShotgun;
     [SerializeField] private int _killsToUnlockCarbine;
     [SerializeField] private TextMeshProUGUI[] _scoreText;
-    
+    private AudioController _audioController;
+    private AudioSource _audioSource;
     [SerializeField] GameObject _pauseMenu;
 
     
@@ -34,6 +36,8 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
         ResetGuns();
         ammoHolders[2].isWeaponUnlocked = true;
         InvokeRepeating("SpawnPickups", 0, pickupsDelay);
@@ -87,13 +91,15 @@ public class SceneController : MonoBehaviour
         if(_killCount == _killsToUnlockShotgun && !ammoHolders[0].isWeaponUnlocked)
         {
             gunPickups[0].SetActive(true);
-           
+            ShowUnlockText(0);
+
         }
 
         if(_killCount == _killsToUnlockCarbine && !ammoHolders[1].isWeaponUnlocked)
         {
             gunPickups[1].SetActive(true);
-            
+            ShowUnlockText(1);
+
         }
     }
 
@@ -222,4 +228,20 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    private void ShowUnlockText(int weapon)
+    {
+
+        gunMessages[weapon].SetActive(true);   
+        
+    }
+
+    public void PlayHoverSound()
+    {
+        _audioSource.PlayOneShot(_audioController.menuHover);
+    }
+
+    public void PlaySelectSound()
+    {
+        _audioSource.PlayOneShot(_audioController.menuSelect);
+    }
 }

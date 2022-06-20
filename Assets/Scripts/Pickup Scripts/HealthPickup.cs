@@ -10,11 +10,15 @@ public class HealthPickup : MonoBehaviour
     //Private Variables
     private HealthController _playerHealthController;
     [SerializeField] private int amountOfHealth;
+    private AudioController _audioController;
+    private AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
+        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -28,10 +32,17 @@ public class HealthPickup : MonoBehaviour
         {
             _playerHealthController.ChangeHealth(amountOfHealth);
             gameObject.SetActive(false);
+
         }
         else
         {
             Debug.Log("Player has full health!");
         }
+
+    }
+
+    private void OnDisable()
+    {
+        _audioSource.PlayOneShot(_audioController.healthPickUp);
     }
 }

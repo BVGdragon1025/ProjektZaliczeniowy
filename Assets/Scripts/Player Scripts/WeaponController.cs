@@ -26,6 +26,8 @@ public class WeaponController : MonoBehaviour
     private Transform _muzzle;
     [SerializeField] private float shotgunSpread;
     private SceneController _sceneController;
+    private AudioSource _audioSource;
+    private AudioController _audioController;
 
 
     // Start is called before the first frame update
@@ -34,6 +36,8 @@ public class WeaponController : MonoBehaviour
         _sceneController = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneController>();
         canShoot = true;
         _muzzle = gameObject.transform.GetChild(0);
+        _audioSource = gameObject.GetComponent<AudioSource>();
+        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
 
     }
 
@@ -83,6 +87,7 @@ public class WeaponController : MonoBehaviour
             if(ammoHolder.ammoCount > 0)
             {
                 ammoHolder.ammoCount--;
+                _audioSource.PlayOneShot(_audioController.carbineShot);
                 Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
                 yield return new WaitForSeconds(shotDelay/3);
             }
@@ -99,6 +104,7 @@ public class WeaponController : MonoBehaviour
         canShoot = false;
         Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
         ammoHolder.ammoCount--;
+        _audioSource.PlayOneShot(_audioController.pistolShot);
         yield return new WaitForSeconds(shotDelay);
         canShoot = true; 
     }
@@ -114,6 +120,8 @@ public class WeaponController : MonoBehaviour
             Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
         }
         ammoHolder.ammoCount--;
+        _audioSource.PlayOneShot(_audioController.shotgunShot);
+        _audioSource.PlayDelayed(0.6f);
         yield return new WaitForSeconds(shotDelay);
         canShoot = true;
     }

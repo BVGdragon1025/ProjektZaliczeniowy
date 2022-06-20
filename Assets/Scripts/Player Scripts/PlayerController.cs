@@ -24,12 +24,16 @@ public class PlayerController : MonoBehaviour
     private float rotationX = 0;
     HealthController _healthController;
     private UIController _uIController;
+    private AudioSource _audioSource;
+    private AudioController _audioController;
     
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
         _healthController = gameObject.GetComponent<HealthController>();
         characterController = GetComponent<CharacterController>();
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             _healthController.ChangeHealth(-collision.gameObject.GetComponent<EnemyBullet>().damage);
+            _audioSource.PlayOneShot(_audioController.playerHit);
             Debug.Log("Player Health: " + gameObject.GetComponent<HealthController>().CurrentHealth);
         }
     }

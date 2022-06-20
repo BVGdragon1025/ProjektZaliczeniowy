@@ -10,11 +10,13 @@ public class BulletController : MonoBehaviour
     public float range;
 
     //Private Variables
-
+    private AudioController _audioController;
 
     // Start is called before the first frame update
     void Start()
     {
+        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+
         Transform cameraTransform = Camera.main.transform;
         RaycastHit hit;
 
@@ -50,6 +52,7 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {   
             other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
+            other.gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
             Destroy(gameObject);
             
 

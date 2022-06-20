@@ -7,12 +7,14 @@ public class AmmoPickup : MonoBehaviour
     //Private Variables
     [SerializeField] private int amount;
     [SerializeField] private AmmoHolder _gunAmmoHolder;
-
+    private AudioController _audioController;
+    private AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -27,5 +29,10 @@ public class AmmoPickup : MonoBehaviour
             other.gameObject.GetComponent<AmmoController>().ChangeAmmo(_gunAmmoHolder, amount);
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        _audioSource.PlayOneShot(_audioController.ammoPickUp);
     }
 }
