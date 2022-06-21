@@ -8,12 +8,13 @@ public class WeaponSwitch : MonoBehaviour
     public int currentWeapon = 0;
 
     //Private Variables
-    private bool _isUnlocked;
+    private PlayerController _playerController;
     private UIController _uIController;
 
     // Start is called before the first frame update
     void Start()
     {
+        _playerController = GetComponentInParent<PlayerController>();
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
         SwitchWeapon();
     }

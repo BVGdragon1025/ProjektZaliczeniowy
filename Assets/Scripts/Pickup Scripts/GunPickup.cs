@@ -62,4 +62,18 @@ public class GunPickup : MonoBehaviour
         }   
         
     }
+
+    private void OnEnable()
+    {
+        StartCoroutine(ShowUnlockText());
+    }
+
+    IEnumerator ShowUnlockText()
+    {
+        _gunInfo.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        _gunInfo.SetActive(false);
+        Debug.Log("Time's up!");
+    }
+
 }

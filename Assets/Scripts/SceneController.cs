@@ -29,6 +29,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] _scoreText;
     private AudioController _audioController;
     private AudioSource _audioSource;
+    private PlayerController _player;
     [SerializeField] GameObject _pauseMenu;
 
     
@@ -38,6 +39,7 @@ public class SceneController : MonoBehaviour
     {
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         ResetGuns();
         ammoHolders[2].isWeaponUnlocked = true;
         InvokeRepeating("SpawnPickups", 0, pickupsDelay);
@@ -91,14 +93,12 @@ public class SceneController : MonoBehaviour
         if(_killCount == _killsToUnlockShotgun && !ammoHolders[0].isWeaponUnlocked)
         {
             gunPickups[0].SetActive(true);
-            ShowUnlockText(0);
 
         }
 
         if(_killCount == _killsToUnlockCarbine && !ammoHolders[1].isWeaponUnlocked)
         {
             gunPickups[1].SetActive(true);
-            ShowUnlockText(1);
 
         }
     }
@@ -201,7 +201,7 @@ public class SceneController : MonoBehaviour
     {
         Time.timeScale = 1;
         _pauseMenu.SetActive(false);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
+        _player.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
@@ -216,7 +216,7 @@ public class SceneController : MonoBehaviour
     public void ShowPauseMenu()
     {
         Time.timeScale = 0;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = false;
+        _player.canMove = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         _pauseMenu.SetActive(true);
@@ -228,12 +228,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void ShowUnlockText(int weapon)
-    {
 
-        gunMessages[weapon].SetActive(true);   
-        
-    }
 
     public void PlayHoverSound()
     {
@@ -244,4 +239,5 @@ public class SceneController : MonoBehaviour
     {
         _audioSource.PlayOneShot(_audioController.menuSelect);
     }
+
 }
