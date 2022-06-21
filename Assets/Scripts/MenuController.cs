@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
     private Light _cameraSpotlight;
     private AudioController _audioController;
     private AudioSource _audioSource;
+    private bool _isInMainMenu;
 
     private void Awake()
     {
@@ -42,7 +43,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_isInMainMenu)
         {
             MainMenu();
             _audioSource.PlayOneShot(_audioController.menuSelect);
@@ -58,6 +59,7 @@ public class MenuController : MonoBehaviour
         _camera.transform.position = _mainMenuPos;
         _camera.transform.rotation = Quaternion.Euler(-14.21f, 17.21f, 0f);
         _cameraSpotlight.enabled = false;
+        _isInMainMenu = true;
     }
 
     public void ShowCredits()
@@ -69,6 +71,7 @@ public class MenuController : MonoBehaviour
         _camera.transform.position = _creditsPos;
         _camera.transform.rotation = Quaternion.Euler(-9, 90, 0);
         _cameraSpotlight.enabled = false;
+        _isInMainMenu = false;
     }
 
     public void ShowControls()
@@ -80,6 +83,7 @@ public class MenuController : MonoBehaviour
         _camera.transform.position = _controlsMenuPos;
         _camera.transform.rotation = Quaternion.Euler(39f, 180f, 0f);
         _cameraSpotlight.enabled = false;
+        _isInMainMenu = false;
     }
 
 
@@ -97,6 +101,7 @@ public class MenuController : MonoBehaviour
         _camera.transform.position = _levelScreenPos;
         _camera.transform.rotation = Quaternion.Euler(0, 90f, 0);
         _cameraSpotlight.enabled = true;
+        _isInMainMenu = false;
     }
 
     public void ChooseLevel(string levelName)
