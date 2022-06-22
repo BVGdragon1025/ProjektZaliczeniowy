@@ -16,7 +16,8 @@ public class SceneController : MonoBehaviour
     public GameObject[] gunPickups;
     public AmmoHolder[] ammoHolders;
     public GameObject[] gunMessages;
-    [HideInInspector]public bool isInMenu = false;
+    [HideInInspector]
+    public bool isInMenu = false;
 
     //Private Variables
     [SerializeField] private float pickupsDelay;
@@ -71,13 +72,10 @@ public class SceneController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape) && !isInMenu)
         {
             ShowPauseMenu();
-            isInMenu = true;
-
         }
         else if(Input.GetKeyDown(KeyCode.Escape) && isInMenu)
         {
             ContinueGame();
-            isInMenu = false;
         }
     }
 
@@ -199,12 +197,12 @@ public class SceneController : MonoBehaviour
 
     public void ContinueGame()
     {
-        Time.timeScale = 1;
         _pauseMenu.SetActive(false);
         _player.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
+        isInMenu = false;
+        Time.timeScale = 1;
     }
 
     public void RestartGame()
@@ -219,6 +217,7 @@ public class SceneController : MonoBehaviour
         _player.canMove = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        isInMenu = true;
         _pauseMenu.SetActive(true);
     }
 
