@@ -8,13 +8,11 @@ public class WeaponSwitch : MonoBehaviour
     public int currentWeapon = 0;
 
     //Private Variables
-    private PlayerController _playerController;
     private UIController _uIController;
 
     // Start is called before the first frame update
     void Start()
     {
-        _playerController = GetComponentInParent<PlayerController>();
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
         SwitchWeapon();
     }
@@ -23,7 +21,7 @@ public class WeaponSwitch : MonoBehaviour
     void Update()
     {
         int previousWeapon = currentWeapon;
-        AmmoHolder ammoHolder = transform.GetChild(currentWeapon).GetComponent<WeaponController>().ammoHolder;
+        AmmoHolder ammoHolder = transform.GetChild(currentWeapon).GetComponent<Weapon>().ammoHolder;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -77,17 +75,17 @@ public class WeaponSwitch : MonoBehaviour
         int i = 0;
         foreach(Transform weapon in transform)
         {
-            if(i == currentWeapon && weapon.GetComponent<WeaponController>().ammoHolder.isWeaponUnlocked)
+            if(i == currentWeapon && weapon.GetComponent<Weapon>().ammoHolder.isWeaponUnlocked)
             {
                 weapon.gameObject.SetActive(true);
-                weapon.gameObject.GetComponent<WeaponController>().canShoot = true;
-                _uIController.DisplayAmmoHUD(i, true, weapon.gameObject.GetComponent<WeaponController>().ammoHolder);
+                weapon.gameObject.GetComponent<Weapon>().canShoot = true;
+                _uIController.DisplayAmmoHUD(i, true, weapon.gameObject.GetComponent<Weapon>().ammoHolder);
                 _uIController.DisplayCrosshair(i, true);
             }
             else
             {
                 weapon.gameObject.SetActive(false);
-                _uIController.DisplayAmmoHUD(i, false, weapon.gameObject.GetComponent<WeaponController>().ammoHolder);
+                _uIController.DisplayAmmoHUD(i, false, weapon.gameObject.GetComponent<Weapon>().ammoHolder);
                 _uIController.DisplayCrosshair(i, false);
             }
             i++;

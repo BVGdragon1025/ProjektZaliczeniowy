@@ -17,7 +17,6 @@ public class HealthPickup : MonoBehaviour
     void Start()
     {
         _playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
-        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
 
@@ -43,6 +42,6 @@ public class HealthPickup : MonoBehaviour
 
     private void OnDisable()
     {
-        _audioSource.PlayOneShot(_audioController.healthPickUp);
+        _audioSource.PlayOneShot(AudioController.Instance.healthPickUp);
     }
 }

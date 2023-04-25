@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     //Public Variables
+    public static SceneController Instance { get; private set; }
+
     public int playerScore;
     public GameObject[] pistolEnemySpawners;
     public GameObject[] shotgunEnemySpawners;
@@ -33,9 +35,18 @@ public class SceneController : MonoBehaviour
     private PlayerController _player;
     [SerializeField] GameObject _pauseMenu;
 
-    
-
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     void Start()
     {
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();

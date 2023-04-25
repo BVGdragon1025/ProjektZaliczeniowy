@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     //Public Variables
+    public static AudioController Instance;
+
     public AudioClip pistolShot;
     public AudioClip carbineShot;
     public AudioClip shotgunShot;
@@ -18,14 +20,16 @@ public class AudioController : MonoBehaviour
     public AudioClip menuHover;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
