@@ -18,7 +18,7 @@ public class GunPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _ammoHoldder = weapon.GetComponent<WeaponController>().ammoHolder;
+        _ammoHoldder = weapon.GetComponent<Weapon>().ammoHolder;
         _weaponSwitch = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponSwitch>();
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();

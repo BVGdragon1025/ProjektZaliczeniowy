@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420805154749041124}
-  - component: {fileID: 6968491725401035834}
   - component: {fileID: 7258248916894743061}
+  - component: {fileID: 1698015420162713298}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -35,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6968491725401035834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800426574570066782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoHolder: {fileID: 11400000, guid: d9843b832ca3b56439be90409790cbd6, type: 2}
-  shotDelay: 1
-  canShoot: 1
-  _weaponType: 1
-  _bullet: {fileID: 7096124351904453833, guid: b3b24f66b2742024f90b0b991ef183f0, type: 3}
-  shotgunSpread: 0
 --- !u!82 &7258248916894743061
 AudioSource:
   m_ObjectHideFlags: 0
@@ -149,6 +131,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1698015420162713298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800426574570066782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ba0b4ddb42466418ff5466da427d1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoHolder: {fileID: 11400000, guid: d9843b832ca3b56439be90409790cbd6, type: 2}
+  canShoot: 1
+  _shotDelay: 1
+  bullet: {fileID: 7096124351904453833, guid: b3b24f66b2742024f90b0b991ef183f0, type: 3}
 --- !u!1 &6123998745515190501
 GameObject:
   m_ObjectHideFlags: 0

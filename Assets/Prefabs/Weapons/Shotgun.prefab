@@ -40,8 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137002186803672915}
-  - component: {fileID: 2700614969913169984}
   - component: {fileID: -6125526861659946807}
+  - component: {fileID: 222598535037385674}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -67,24 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 189, z: 0}
---- !u!114 &2700614969913169984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769388139802406377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
-  shotDelay: 1.5
-  canShoot: 1
-  _weaponType: 2
-  _bullet: {fileID: 7096124351904453833, guid: eb8748c9b3cf4f94cb0a086c4124e797, type: 3}
-  shotgunSpread: 0.2
 --- !u!82 &-6125526861659946807
 AudioSource:
   m_ObjectHideFlags: 0
@@ -181,6 +163,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &222598535037385674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769388139802406377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5cdfb6c2b4f1e40ae7c90d12db308d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
+  canShoot: 1
+  _shotDelay: 1.5
+  bullet: {fileID: 7096124351904453833, guid: eb8748c9b3cf4f94cb0a086c4124e797, type: 3}
+  _shotgunSpread: 0.2
 --- !u!1 &841607455906314099
 GameObject:
   m_ObjectHideFlags: 0
