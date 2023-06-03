@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 6718594320197781011}
   - component: {fileID: 7679453637216012726}
   - component: {fileID: 5581667671688576380}
-  - component: {fileID: 2489905683424405686}
   - component: {fileID: 7582110560235745400}
+  - component: {fileID: 7176169378742337591}
   m_Layer: 0
   m_Name: Carbine
   m_TagString: Untagged
@@ -121,24 +121,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2489905683424405686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230428116589272233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a47c05d638bfdf44b83c4c8903ce335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoHolder: {fileID: 11400000, guid: 20d00e0649dd0624fbd19151c90bed80, type: 2}
-  shotDelay: 1
-  canShoot: 1
-  _weaponType: 3
-  _bullet: {fileID: 7096124351904453833, guid: fad30037d6da153498083265dbd2f73e, type: 3}
-  shotgunSpread: 0
 --- !u!82 &7582110560235745400
 AudioSource:
   m_ObjectHideFlags: 0
@@ -235,3 +217,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7176169378742337591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230428116589272233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694d53b69d2383149a7ba6a2bc0a9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoHolder: {fileID: 11400000, guid: 20d00e0649dd0624fbd19151c90bed80, type: 2}
+  canShoot: 1
+  _shotDelay: 1
+  bullet: {fileID: 7096124351904453833, guid: fad30037d6da153498083265dbd2f73e, type: 3}

@@ -32,12 +32,6 @@ public class EnemyWeapon : MonoBehaviour
         _muzzle = gameObject.transform.GetChild(0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Shoot()
     {
         if (canShoot)
