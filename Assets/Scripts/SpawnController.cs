@@ -13,15 +13,9 @@ public class SpawnController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        InvokeRepeating("SpawnEnemy", _spawnDelay, spawnInterval);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        InvokeRepeating(nameof(SpawnEnemy), _spawnDelay, spawnInterval);
     }
 
     void SpawnEnemy()

@@ -54,7 +54,7 @@ public class SceneController : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         ResetGuns();
         ammoHolders[2].isWeaponUnlocked = true;
-        InvokeRepeating("SpawnPickups", 0, pickupsDelay);
+        InvokeRepeating(nameof(SpawnPickups), 0, pickupsDelay);
     }
 
     // Update is called once per frame
