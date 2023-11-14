@@ -27,9 +27,13 @@ public class EnemyWeapon : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
-        canShoot = true;
+        _audioController = AudioController.Instance;
         _muzzle = gameObject.transform.GetChild(0);
+    }
+
+    private void OnEnable()
+    {
+        canShoot = true;
     }
 
     public void Shoot()

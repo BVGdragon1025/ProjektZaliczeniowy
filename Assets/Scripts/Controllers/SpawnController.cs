@@ -34,11 +34,10 @@ public class SpawnController : MonoBehaviour
         {
             if(enemy != null)
             {
-                enemy.transform.SetPositionAndRotation(transform.parent.position, Quaternion.identity);
+                enemy.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
                 enemy.SetActive(true);
 
             }
-            //Instantiate(enemyPrefab, transform.position, enemyPrefab.transform.rotation);
         }
         
     }

@@ -10,6 +10,7 @@ public class HealthController : MonoBehaviour
 
     //Private Variables
     [SerializeField] private int _currentHealth;
+    private EnemyController _enemyController;
     UIController _uIController;
 
 
@@ -17,6 +18,7 @@ public class HealthController : MonoBehaviour
     void Start()
     {
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        _enemyController = GetComponent<EnemyController>();
 
     }
 
@@ -44,9 +46,13 @@ public class HealthController : MonoBehaviour
 
     private void CharacterDie()
     {
+        SceneController instance = SceneController.Instance;
+
         if (gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Character died! | Character name: " + gameObject.name);
+            instance.CountKill();
+            instance.playerScore += _enemyController.Score;
             gameObject.SetActive(false);
         }
         else if(gameObject.CompareTag("Player"))

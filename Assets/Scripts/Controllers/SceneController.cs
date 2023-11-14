@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        _audioController = AudioController.Instance;
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         ResetGuns();

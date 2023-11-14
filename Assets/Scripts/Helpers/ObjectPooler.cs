@@ -25,7 +25,7 @@ public class ObjectPooler : MonoBehaviour
 
         for(int i = 0; i < _amountToPool; i++)
         {
-            temp = Instantiate(pooledObject, transform.parent);
+            temp = Instantiate(pooledObject, transform);
             objectsTable.Add(temp);
             objectsTable[i].SetActive(false);
         }

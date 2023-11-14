@@ -6827,6 +6827,11 @@ PrefabInstance:
       propertyPath: spawnInterval
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8674718465329866529, guid: f9a24b6544d232642a1916c1e3769cf9,
+        type: 3}
+      propertyPath: _amountToPool
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9a24b6544d232642a1916c1e3769cf9, type: 3}
 --- !u!4 &527104479 stripped
@@ -15898,6 +15903,11 @@ PrefabInstance:
       propertyPath: spawnInterval
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8674718465329866529, guid: f9a24b6544d232642a1916c1e3769cf9,
+        type: 3}
+      propertyPath: _amountToPool
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9a24b6544d232642a1916c1e3769cf9, type: 3}
 --- !u!4 &1312731121 stripped
@@ -15913,6 +15923,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 156815737}
     m_Modifications:
+    - target: {fileID: 410859470324316796, guid: 6c0a7870d10b97b4fbd8a1fc8c1f6d30,
+        type: 3}
+      propertyPath: _amountToPool
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7587022604497117984, guid: 6c0a7870d10b97b4fbd8a1fc8c1f6d30,
         type: 3}
       propertyPath: m_RootOrder
@@ -16398,6 +16413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -16680,6 +16696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6507731775834541643, guid: b31bb6c4ecdc7964e8bb4f3efe98fa56,
+        type: 3}
+      propertyPath: _amountToPool
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31bb6c4ecdc7964e8bb4f3efe98fa56, type: 3}
