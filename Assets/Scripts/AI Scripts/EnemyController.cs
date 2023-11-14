@@ -15,16 +15,11 @@ public class EnemyController : MonoBehaviour
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
     }
 
-    private void OnDestroy()
-    {
-        _sceneController.CountKill();
-        _sceneController.playerScore += _score;
-
-    }
-
     private void OnDisable()
     {
         gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
+        _sceneController.CountKill();
+        _sceneController.playerScore += _score;
     }
 
 }

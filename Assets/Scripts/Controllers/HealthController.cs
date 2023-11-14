@@ -17,7 +17,11 @@ public class HealthController : MonoBehaviour
     void Start()
     {
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
-        
+
+    }
+
+    private void OnEnable()
+    {
         _currentHealth = maxHealth;
     }
 
@@ -43,7 +47,7 @@ public class HealthController : MonoBehaviour
         if (gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Character died! | Character name: " + gameObject.name);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else if(gameObject.CompareTag("Player"))
         {
