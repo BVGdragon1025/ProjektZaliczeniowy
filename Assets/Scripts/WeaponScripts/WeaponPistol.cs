@@ -10,7 +10,8 @@ public class WeaponPistol : Weapon
     public override IEnumerator ShootBullet()
     {
         canShoot = false;
-        Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
+        GetPooledBullet(muzzle);
+        //Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
         ammoHolder.ammoCount--;
         audioSource.PlayOneShot(AudioController.Instance.pistolShot);
         yield return new WaitForSeconds(ShotDelay);

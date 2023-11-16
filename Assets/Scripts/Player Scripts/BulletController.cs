@@ -53,7 +53,7 @@ public class BulletController : MonoBehaviour
         {   
             other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
             other.gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             
 
         }
@@ -63,7 +63,7 @@ public class BulletController : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
