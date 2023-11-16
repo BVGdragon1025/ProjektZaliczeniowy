@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 138778537369200256}
   m_Layer: 0
   m_Name: Carbine
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

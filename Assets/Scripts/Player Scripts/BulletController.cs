@@ -11,29 +11,33 @@ public class BulletController : MonoBehaviour
 
     //Private Variables
     private AudioController _audioController;
+    [SerializeField] private Rigidbody _rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        _audioController = AudioController.Instance;
 
+    }
+
+    private void OnEnable()
+    {
         Transform cameraTransform = Camera.main.transform;
-        RaycastHit hit;
 
-        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit)) //Jeœli promieñ uderzy³ w coœ
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit)) //Jeœli promieñ uderzy³ w coœ
         {
             Vector3 bulletDirection = (hit.point + -gameObject.transform.position).normalized;
-            gameObject.GetComponent<Rigidbody>().velocity = bulletDirection * speed;
+            _rb.velocity = bulletDirection * speed;
         }
         else
         {
             //Dla przypadków kiedy gracz np. strzela w niebo
             Vector3 bulletDirection = -gameObject.transform.forward.normalized;
-            gameObject.GetComponent<Rigidbody>().velocity = bulletDirection * speed;
+            _rb.velocity = bulletDirection * speed;
 
         }
 
-         //Musi tak byæ
+        //Musi tak byæ
         //Jak dobrze rozumiem, transform.forward bierze wektor do przodu na podstawie obiektu przypiêtego do skryptu
         //A da³em ujemny, bo Ÿle obróci³em kule xD
     }
@@ -43,11 +47,11 @@ public class BulletController : MonoBehaviour
     {
         if (gameObject.transform.position.magnitude > range)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {   

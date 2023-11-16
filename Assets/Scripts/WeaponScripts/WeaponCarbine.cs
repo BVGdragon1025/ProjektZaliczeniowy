@@ -14,7 +14,8 @@ public class WeaponCarbine : Weapon
             {
                 ammoHolder.ammoCount--;
                 audioSource.PlayOneShot(AudioController.Instance.carbineShot);
-                Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
+                //Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
+                GetPooledBullet();
                 yield return new WaitForSeconds(ShotDelay / 3);
             }
 

@@ -17,7 +17,9 @@ public class WeaponShotgun : Weapon
         {
             float randomRangeX = Random.Range(-Spread, Spread);
             float randomRangeY = Random.Range(-Spread, Spread);
-            Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0));
+            Debug.Log($"Shotgun spread for bullet {i}: {randomRangeX}, {randomRangeY}");
+            //Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0));
+            GetPooledBullet(randomRangeX, randomRangeY);
         }
         ammoHolder.ammoCount--;
         audioSource.PlayOneShot(AudioController.Instance.shotgunShot);

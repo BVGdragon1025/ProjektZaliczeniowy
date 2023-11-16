@@ -34,16 +34,21 @@ public abstract class Weapon : MonoBehaviour
     protected GameObject bullet;
     protected Transform muzzle;
     protected AudioSource audioSource;
-    protected ObjectPooler _pooler;
+    protected ObjectPooler pooler;
+
+    private void Awake()
+    {
+        pooler = GetComponent<ObjectPooler>();
+        pooler.pooledObject = bullet;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        _pooler = GetComponent<ObjectPooler>();
         canShoot = true;
         muzzle = gameObject.transform.GetChild(0);
         audioSource = gameObject.GetComponent<AudioSource>();
-        _pooler.pooledObject = bullet;
+        
     }
 
     // Update is called once per frame
@@ -63,13 +68,31 @@ public abstract class Weapon : MonoBehaviour
 
         }
     }
-    protected void GetPooledBullet(Transform weaponMuzzle)
+
+    /// <summary>
+    /// Function gets bullet object from Object Pool, then uses SetPositionAndRotation to set it in world space
+    /// </summary>
+    protected void GetPooledBullet()
     {
-        GameObject pooledObject = _pooler.GetObjectPool();
+        GameObject pooledObject = pooler.GetObjectPool();
         pooledObject.transform.parent = null;
-        pooledObject.transform.position = weaponMuzzle.transform.position;
-        pooledObject.transform.rotation = weaponMuzzle.transform.rotation;
-        //pooledObject.transform.SetPositionAndRotation(muzzle.transform.position, muzzle.transform.rotation);
+        //pooledObject.transform.position = muzzle.transform.position;
+        //pooledObject.transform.rotation = muzzle.transform.rotation;
+        pooledObject.transform.SetPositionAndRotation(muzzle.transform.position, muzzle.transform.rotation);
+        pooledObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Function gets bullet object from Object Pool, then uses SetPositionAndRotation to set it in world space and includes shotgun spread. 
+    /// </summary>
+    /// <param name="spreadX"></param>
+    /// <param name="spreadY"></param>
+    protected void GetPooledBullet(float spreadX, float spreadY)
+    {
+        GameObject pooledObject = pooler.GetObjectPool();
+        pooledObject.transform.parent = null;
+        Debug.Log($"Received spread: {spreadX}, {spreadY}");
+        pooledObject.transform.SetPositionAndRotation(muzzle.transform.position, muzzle.transform.rotation * Quaternion.Euler(spreadX, spreadY, 0));
         pooledObject.SetActive(true);
     }
 

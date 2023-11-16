@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 5581667671688576380}
   - component: {fileID: 6443285129399978352}
   - component: {fileID: -1508773465009963057}
+  - component: {fileID: 138778537369200256}
   m_Layer: 0
   m_Name: AICarbine
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +138,7 @@ MonoBehaviour:
   canShoot: 0
   _weaponType: 2
   _bullet: {fileID: 7096124351904453833, guid: 1f7d21d0eb567e94f93bb139a37628bd, type: 3}
-  shotgunSpread: 0
+  _shotgunSpread: 0
 --- !u!82 &-1508773465009963057
 AudioSource:
   m_ObjectHideFlags: 0
@@ -234,3 +235,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &138778537369200256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230428116589272233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44b9e580d00b043bfa442cbff834d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountToPool: 36
+  objectsTable: []
+  pooledObject: {fileID: 0}

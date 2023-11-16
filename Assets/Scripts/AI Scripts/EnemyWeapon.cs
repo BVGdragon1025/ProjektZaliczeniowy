@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(ObjectPooler))]
+
 public class EnemyWeapon : MonoBehaviour
 {
     //Public Variables
@@ -18,9 +21,10 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField] private WeaponType _weaponType = WeaponType.Pistol;
     [SerializeField] private GameObject _bullet;
     private Transform _muzzle;
-    [SerializeField] private float shotgunSpread;
+    [SerializeField] private float _shotgunSpread;
     private AudioSource _audioSource;
     private AudioController _audioController;
+    private ObjectPooler _pooler;
 
 
     // Start is called before the first frame update
@@ -29,11 +33,31 @@ public class EnemyWeapon : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _audioController = AudioController.Instance;
         _muzzle = gameObject.transform.GetChild(0);
+        _pooler = GetComponent<ObjectPooler>();
+        _pooler.pooledObject = _bullet;
     }
 
     private void OnEnable()
     {
         canShoot = true;
+    }
+
+    void GetPooledBullet()
+    {
+        GameObject pooledObject = _pooler.GetObjectPool();
+        pooledObject.transform.parent = null;
+        pooledObject.transform.SetPositionAndRotation(_muzzle.transform.position, _muzzle.transform.rotation);
+        pooledObject.SetActive(true);
+
+    }
+
+    void GetPooledBullet(float spreadX, float spreadY)
+    {
+        GameObject pooledObject = _pooler.GetObjectPool();
+        pooledObject.transform.parent = null;
+        pooledObject.transform.SetPositionAndRotation(_muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(spreadX, spreadY, 0));
+        pooledObject.SetActive(true);
+
     }
 
     public void Shoot()
@@ -60,7 +84,8 @@ public class EnemyWeapon : MonoBehaviour
         canShoot = false;
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+            //Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+            GetPooledBullet();
             _audioSource.PlayOneShot(_audioController.carbineShot);
             yield return new WaitForSeconds(shotDelay / 3);
 
@@ -73,7 +98,8 @@ public class EnemyWeapon : MonoBehaviour
     IEnumerator PistolShots()
     {
         canShoot = false;
-        Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+        //Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
+        GetPooledBullet();
         _audioSource.PlayOneShot(_audioController.pistolShot);
         yield return new WaitForSeconds(shotDelay);
         canShoot = true;
@@ -85,9 +111,10 @@ public class EnemyWeapon : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            float randomRangeX = Random.Range(-shotgunSpread, shotgunSpread);
-            float randomRangeY = Random.Range(-shotgunSpread, shotgunSpread);
-            Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
+            float randomRangeX = Random.Range(-_shotgunSpread, _shotgunSpread);
+            float randomRangeY = Random.Range(-_shotgunSpread, _shotgunSpread);
+            GetPooledBullet(randomRangeX, randomRangeY);
+            //Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
         }
         _audioSource.PlayOneShot(_audioController.shotgunShot);
         _audioSource.PlayDelayed(0.6f);
