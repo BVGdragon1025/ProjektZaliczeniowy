@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: MenuLocalization Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: MenuLocalization
+  m_TableCollectionNameGuidString: 548d0d6d2bf002147a4970c714cbc4ca
+  m_Entries:
+  - m_Id: 133168365568
+    m_Key: StartGameButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 168375353344
+    m_Key: CreditsButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188226994176
+    m_Key: ControlsButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 219357118464
+    m_Key: ExitGameButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238164377600
+    m_Key: BackButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 259387555840
+    m_Key: LanguageDropdown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288764461056
+    m_Key: CreatedByString
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334138441728
+    m_Key: CreditsSoundSourceText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381546659840
+    m_Key: LicenseString
+    m_Metadata:
+      m_Items: []
+  - m_Id: 408058855424
+    m_Key: SelectLevelString
+    m_Metadata:
+      m_Items: []
+  - m_Id: 450433908736
+    m_Key: WarehouseLevelButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 486215516160
+    m_Key: WarehouseLevelDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 527315501056
+    m_Key: WhiskyLevelButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 563474595840
+    m_Key: WhiskyLevelDesription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 607657394176
+    m_Key: ControlsHeaderText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632043077632
+    m_Key: WalkText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 646156910592
+    m_Key: SprintText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 671880577024
+    m_Key: JumpText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 699789475840
+    m_Key: JumpKeyText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718395408384
+    m_Key: ShootText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 734006607872
+    m_Key: ShootKeyButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 764281094144
+    m_Key: SelectWeaponText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 799806849024
+    m_Key: SelectWeaponKeys
+    m_Metadata:
+      m_Items: []
+  - m_Id: 824158978048
+    m_Key: EscapeText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 612540529258791057
+  references:
+    version: 2
+    RefIds:
+    - rid: 612540529258791057
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1700250436816

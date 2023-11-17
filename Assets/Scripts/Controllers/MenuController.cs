@@ -13,6 +13,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] GameObject _levelOneDescription;
     [SerializeField] GameObject _levelTwoDescription;
+    [SerializeField] GameObject _languageDropdown;
     private Vector3 _mainMenuPos;
     private Vector3 _creditsPos;
     private Vector3 _controlsMenuPos;
@@ -64,6 +65,7 @@ public class MenuController : MonoBehaviour
     public void MainMenu()
     {
         _mainMenu.SetActive(true);
+        _languageDropdown.SetActive(true);
         _creditsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _levelSelectionMenu.SetActive(false);
@@ -77,6 +79,7 @@ public class MenuController : MonoBehaviour
     public void ShowCredits()
     {
         _mainMenu.SetActive(false);
+        _languageDropdown.SetActive(false);
         _creditsMenu.SetActive(true);
         _controlsMenu.SetActive(false);
         _levelSelectionMenu.SetActive(false);
@@ -90,6 +93,7 @@ public class MenuController : MonoBehaviour
     public void ShowControls()
     {
         _mainMenu.SetActive(false);
+        _languageDropdown.SetActive(false);
         _creditsMenu.SetActive(false);
         _controlsMenu.SetActive(true);
         _levelSelectionMenu.SetActive(false);
@@ -113,6 +117,7 @@ public class MenuController : MonoBehaviour
     public void ShowLevelSelectScreen()
     {
         _mainMenu.SetActive(false);
+        _languageDropdown.SetActive(false);
         _creditsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _levelSelectionMenu.SetActive(true);

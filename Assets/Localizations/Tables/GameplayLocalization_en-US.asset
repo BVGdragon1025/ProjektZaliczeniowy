@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameplayLocalization_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 592d49fc4574fef439b9d3953789fc41, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 66424406016
+    m_Localized: 'Score:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82207571968
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122116374528
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149660368896
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 172146032640
+    m_Localized: You died!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191334973440
+    m_Localized: 'Final Score:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 215016013824
+    m_Localized: Game Paused!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240160866304
+    m_Localized: Shotgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 265154723840
+    m_Localized: Carbine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278706520064
+    m_Localized: has been unlocked. Find it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 310339960832
+    m_Localized: has been unlocked. Find it!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
