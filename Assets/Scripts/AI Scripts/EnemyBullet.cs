@@ -9,6 +9,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _range;
     private AudioController _audioController;
+    [SerializeField] private BoxCollider _boxCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class EnemyBullet : MonoBehaviour
     {
         Vector3 bulletDirection = -gameObject.transform.forward.normalized;
         gameObject.GetComponent<Rigidbody>().velocity = bulletDirection * _speed;
+        StartCoroutine(TriggerDelay());
 
     }
 
@@ -52,4 +54,16 @@ public class EnemyBullet : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        _boxCollider.isTrigger = false;
+    }
+
+    IEnumerator TriggerDelay()
+    {
+        yield return new WaitForFixedUpdate();
+        _boxCollider.isTrigger = true;
+    }
+
 }

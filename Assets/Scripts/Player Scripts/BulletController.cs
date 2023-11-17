@@ -12,6 +12,7 @@ public class BulletController : MonoBehaviour
     //Private Variables
     private AudioController _audioController;
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private BoxCollider _boxCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class BulletController : MonoBehaviour
     private void OnEnable()
     {
         Transform cameraTransform = Camera.main.transform;
-
+        
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit)) //Jeœli promieñ uderzy³ w coœ
         {
             Vector3 bulletDirection = (hit.point + -gameObject.transform.position).normalized;
@@ -36,6 +37,8 @@ public class BulletController : MonoBehaviour
             _rb.velocity = bulletDirection * speed;
 
         }
+
+        StartCoroutine(TriggerDelay());
 
         //Musi tak byæ
         //Jak dobrze rozumiem, transform.forward bierze wektor do przodu na podstawie obiektu przypiêtego do skryptu
@@ -69,6 +72,18 @@ public class BulletController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        _boxCollider.isTrigger = false;
+    }
+
+    IEnumerator TriggerDelay()
+    {
+        yield return new WaitForFixedUpdate();
+        _boxCollider.isTrigger = true;
+        Debug.Log($"{gameObject.name} is trigger!");
     }
 
 }

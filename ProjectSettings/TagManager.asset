@@ -16,6 +16,9 @@ TagManager:
   - MenuController
   - AudioController
   - Weapon
+  - PistolPool
+  - ShotgunPool
+  - CarbinePool
   layers:
   - Default
   - TransparentFX

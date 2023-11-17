@@ -8,7 +8,6 @@ public abstract class Weapon : MonoBehaviour
     //Public Variables
     public AmmoHolder ammoHolder;
     // ENCAPSULATION
-    [SerializeField]
     public float ShotDelay {
         get
             {

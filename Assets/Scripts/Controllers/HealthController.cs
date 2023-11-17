@@ -50,14 +50,14 @@ public class HealthController : MonoBehaviour
 
         if (gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Character died! | Character name: " + gameObject.name);
+            //Debug.Log("Character died! | Character name: " + gameObject.name);
             instance.CountKill();
             instance.playerScore += _enemyController.Score;
             gameObject.SetActive(false);
         }
         else if(gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player Died!");
+            //Debug.Log("Player Died!");
             _uIController.ShowDeathScreen();
             gameObject.GetComponent<PlayerController>().canMove = false;
             Time.timeScale = 0;

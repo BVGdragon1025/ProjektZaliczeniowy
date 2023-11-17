@@ -5002,3 +5002,4 @@ MonoBehaviour:
   speed: 15
   range: 150
   _rb: {fileID: 7096124351904453838}
+  _boxCollider: {fileID: 7096124351904453839}

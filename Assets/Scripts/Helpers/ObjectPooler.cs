@@ -7,6 +7,8 @@ public class ObjectPooler : MonoBehaviour
     //Private Variables
     [SerializeField]
     private int _amountToPool;
+    [SerializeField, Tooltip("If checked, pooled object will be instantiated as Child of GameObject with this component.")]
+    private bool _instantiateAsChild;
 
     //Public variables
     public List<GameObject> objectsTable;
@@ -23,26 +25,21 @@ public class ObjectPooler : MonoBehaviour
     {
         GameObject temp;
 
-        if (gameObject.CompareTag("Weapon"))
+        for(int i = 0; i < _amountToPool; i++)
         {
-            for(int i = 0; i < _amountToPool; i++)
-            {
-                temp = Instantiate(pooledObject);
-                objectsTable.Add(temp);
-                objectsTable[i].SetActive(false);
-            }
-        }
-        else
-        {
-            for(int i = 0; i < _amountToPool; i++)
+            if (_instantiateAsChild)
             {
                 temp = Instantiate(pooledObject, transform);
-                objectsTable.Add(temp);
-                objectsTable[i].SetActive(false);
             }
-        }
+            else
+            {
+                temp = Instantiate(pooledObject);
+            }
 
-        
+            objectsTable.Add(temp);
+            objectsTable[i].SetActive(false);
+
+        }
     }
 
     public GameObject GetObjectPool()

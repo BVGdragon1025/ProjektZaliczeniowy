@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1420805154749041124}
   - component: {fileID: 2212170502127138973}
   - component: {fileID: -5214678934622340883}
-  - component: {fileID: 8062353928286509133}
   m_Layer: 0
   m_Name: AIPistol
   m_TagString: Weapon
@@ -149,21 +148,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8062353928286509133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800426574570066782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f44b9e580d00b043bfa442cbff834d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountToPool: 20
-  objectsTable: []
-  pooledObject: {fileID: 0}
 --- !u!1 &6123998745515190501
 GameObject:
   m_ObjectHideFlags: 0

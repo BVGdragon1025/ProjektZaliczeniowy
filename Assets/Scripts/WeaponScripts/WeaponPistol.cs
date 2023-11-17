@@ -11,7 +11,6 @@ public class WeaponPistol : Weapon
     {
         canShoot = false;
         GetPooledBullet();
-        //Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation);
         ammoHolder.ammoCount--;
         audioSource.PlayOneShot(AudioController.Instance.pistolShot);
         yield return new WaitForSeconds(ShotDelay);

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(ObjectPooler))]
-
 public class EnemyWeapon : MonoBehaviour
 {
     //Public Variables
@@ -33,8 +31,7 @@ public class EnemyWeapon : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _audioController = AudioController.Instance;
         _muzzle = gameObject.transform.GetChild(0);
-        _pooler = GetComponent<ObjectPooler>();
-        _pooler.pooledObject = _bullet;
+        _pooler = SelectCorrectBulletPool();
     }
 
     private void OnEnable()
@@ -84,7 +81,6 @@ public class EnemyWeapon : MonoBehaviour
         canShoot = false;
         for (int i = 0; i < 3; i++)
         {
-            //Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
             GetPooledBullet();
             _audioSource.PlayOneShot(_audioController.carbineShot);
             yield return new WaitForSeconds(shotDelay / 3);
@@ -98,7 +94,6 @@ public class EnemyWeapon : MonoBehaviour
     IEnumerator PistolShots()
     {
         canShoot = false;
-        //Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
         GetPooledBullet();
         _audioSource.PlayOneShot(_audioController.pistolShot);
         yield return new WaitForSeconds(shotDelay);
@@ -114,12 +109,38 @@ public class EnemyWeapon : MonoBehaviour
             float randomRangeX = Random.Range(-_shotgunSpread, _shotgunSpread);
             float randomRangeY = Random.Range(-_shotgunSpread, _shotgunSpread);
             GetPooledBullet(randomRangeX, randomRangeY);
-            //Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
+            // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
         }
         _audioSource.PlayOneShot(_audioController.shotgunShot);
         _audioSource.PlayDelayed(0.6f);
         yield return new WaitForSeconds(shotDelay);
         canShoot = true;
+    }
+
+    ObjectPooler SelectCorrectBulletPool()
+    {
+        ObjectPooler pooler;
+
+        if(gameObject.name == "AIPistol")
+        {
+            pooler = GameObject.FindGameObjectWithTag("PistolPool").GetComponent<ObjectPooler>();
+            return pooler;
+        }
+
+        if(gameObject.name == "AIShotgun")
+        {
+            pooler = GameObject.FindGameObjectWithTag("ShotgunPool").GetComponent<ObjectPooler>();
+            return pooler;
+        }
+
+        if(gameObject.name == "AICarbine")
+        {
+            pooler = GameObject.FindGameObjectWithTag("CarbinePool").GetComponent<ObjectPooler>();
+            return pooler;
+        }
+
+        return null;
+
     }
 
 }

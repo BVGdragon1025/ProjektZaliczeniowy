@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 137002186803672915}
   - component: {fileID: -4167434222695846087}
   - component: {fileID: 1623848585202336034}
-  - component: {fileID: 8176547957336157791}
   m_Layer: 0
   m_Name: AIShotgun
   m_TagString: Weapon
@@ -181,21 +180,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8176547957336157791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769388139802406377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f44b9e580d00b043bfa442cbff834d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountToPool: 60
-  objectsTable: []
-  pooledObject: {fileID: 0}
 --- !u!1 &841607455906314099
 GameObject:
   m_ObjectHideFlags: 0
