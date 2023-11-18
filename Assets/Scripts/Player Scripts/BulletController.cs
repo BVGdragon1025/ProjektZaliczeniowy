@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     //Public Variables
-    public int damage;
+    public float damage;
     public float speed;
     public float range;
 
@@ -56,6 +56,27 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        switch (other.gameObject.tag)
+        {
+            case "Enemy":
+                other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
+                other.gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
+                gameObject.SetActive(false);
+                break;
+            case "EnemyEyes":
+                other.gameObject.GetComponentInParent<HealthController>().ChangeHealth(-damage * 1.5f);
+                other.gameObject.GetComponentInParent<AudioSource>().PlayOneShot(_audioController.enemyHitCrit);
+                gameObject.SetActive(false);
+                break;
+            case "Bullet":
+                Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+                break;
+            default:
+                gameObject.SetActive(false);
+                break;
+
+        }
+        /*
         if (other.gameObject.CompareTag("Enemy"))
         {   
             other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
@@ -72,6 +93,7 @@ public class BulletController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        */
     }
 
     private void OnDisable()

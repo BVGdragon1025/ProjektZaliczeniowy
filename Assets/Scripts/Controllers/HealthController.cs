@@ -5,11 +5,11 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     //Public Variables
-    public int CurrentHealth { get { return _currentHealth; } }
-    public int maxHealth = 100;
+    public float CurrentHealth { get { return _currentHealth; } }
+    public float maxHealth = 100;
 
     //Private Variables
-    [SerializeField] private int _currentHealth;
+    [SerializeField] private float _currentHealth;
     private EnemyController _enemyController;
     UIController _uIController;
 
@@ -27,7 +27,7 @@ public class HealthController : MonoBehaviour
         _currentHealth = maxHealth;
     }
 
-    public void ChangeHealth(int deltaHealth)
+    public void ChangeHealth(float deltaHealth)
     {
 
         _currentHealth = Mathf.Clamp(_currentHealth + deltaHealth, 0, maxHealth);

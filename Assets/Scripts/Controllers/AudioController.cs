@@ -16,6 +16,7 @@ public class AudioController : MonoBehaviour
     public AudioClip gunPickUp;
     public AudioClip playerHit;
     public AudioClip enemyHit;
+    public AudioClip enemyHitCrit;
     public AudioClip menuSelect;
     public AudioClip menuHover;
 

@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
         _healthCounter.gameObject.SetActive(true);
     }
 
-    public void DisplayHealth(int healthAmount)
+    public void DisplayHealth(float healthAmount)
     {
         _healthCounter.text = healthAmount.ToString();
         

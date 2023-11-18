@@ -19,6 +19,7 @@ TagManager:
   - PistolPool
   - ShotgunPool
   - CarbinePool
+  - EnemyEyes
   layers:
   - Default
   - TransparentFX

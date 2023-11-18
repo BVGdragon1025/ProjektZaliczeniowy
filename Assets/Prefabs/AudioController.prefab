@@ -53,5 +53,6 @@ MonoBehaviour:
   gunPickUp: {fileID: 8300000, guid: ff7633f1a7980e0438f67b12401a4d4e, type: 3}
   playerHit: {fileID: 8300000, guid: 38d266bd20bbc564aad4d250a144119b, type: 3}
   enemyHit: {fileID: 8300000, guid: 878789d42064d9e48a03379fd1761f17, type: 3}
+  enemyHitCrit: {fileID: 8300000, guid: 943498ba19d289648a31ae9a761e6b65, type: 3}
   menuSelect: {fileID: 8300000, guid: d6878b0eee9815b40979f54f3619a942, type: 3}
   menuHover: {fileID: 8300000, guid: d5f561ff26efda44f864ef8ce9a4dcce, type: 3}
