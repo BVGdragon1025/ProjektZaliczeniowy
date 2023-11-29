@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MenuLocalization_zh-Hans
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: zh-Hans
+  m_SharedData: {fileID: 11400000, guid: 548d0d6d2bf002147a4970c714cbc4ca, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 133168365568
+    m_Localized: "\u6E38\u620F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 168375353344
+    m_Localized: "\u8363\u8A89"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188226994176
+    m_Localized: "\u6309\u94AE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 219357118464
+    m_Localized: "\u9000\u51FA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238164377600
+    m_Localized: "\u8FD4\u56DE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 259387555840
+    m_Localized: "\u8BED\u8A00"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288764461056
+    m_Localized: "\u521B\u5EFA\u8005\nDominik Nawrot"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334138441728
+    m_Localized: "\u6765\u81EA Pixabay \u548C Freesound.org \u7684\u5404\u79CD\u58F0\u97F3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381546659840
+    m_Localized: "\u6240\u7528\u8D44\u4EA7\u5747\u4E3A\u77E5\u8BC6\u5171\u4EAB CC0\uFF08\u516C\u5171\u9886\u57DF\uFF09\u6388\u6743\u3002\n\u58F0\u97F3\u91C7\u7528
+      Pixabay \u8BB8\u53EF (https://pixabay.com/service/license/) \u548C CC0 \u8BB8\u53EF\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 408058855424
+    m_Localized: "\u9009\u62E9\u5730\u56FE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 450433908736
+    m_Localized: "\u4ED3\u5E93"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 486215516160
+    m_Localized: "\u57CE\u5E02\u67D0\u5904\u5E9F\u5F03\u7684\u4ED3\u5E93\u3002\u55EF\uFF0C\u770B\u8D77\u6765\u662F\uFF0C\u76F4\u5230\u4F60\u51B3\u5B9A\u5F3A\u884C\u8FDB\u5165...
+      \u8FD1\u8DDD\u79BB\u683C\u6597 \u72ED\u7A84\u7684\u5730\u65B9\u548C\u7BB1\u5B50
+      \u5F88\u591A\u7BB1\u5B50..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 527315501056
+    m_Localized: "\u5A01\u58EB\u5FCC\u7231\u597D\u8005\u4FF1\u4E50\u90E8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 563474595840
+    m_Localized: "\"\u5A01\u58EB\u5FCC\u7231\u597D\u8005\u4FF1\u4E50\u90E8\" \u662F\u5404\u79CD\u53EF\u7591\u4EBA\u7269\u7684\u805A\u96C6\u5730
+      \u4F60\u6765\u8FD9\u91CC\u6363\u4E71\u53EF\u4E0D\u662F\u660E\u667A\u4E4B\u4E3E...
+      \u6BD4\u4ED3\u5E93\u66F4\u5BBD\u655E\u7684\u7A7A\u95F4\uFF0C\u5374\u6709\u66F4\u591A\u7684\u654C\u4EBA\u60F3\u8981\u4F60\u7684\u547D..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 607657394176
+    m_Localized: "\u6309\u94AE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632043077632
+    m_Localized: "\u6B65\u884C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 646156910592
+    m_Localized: "\u8FD0\u884C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 671880577024
+    m_Localized: "\u8DF3\u8F6C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 699789475840
+    m_Localized: Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718395408384
+    m_Localized: "\u62CD\u6444"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 734006607872
+    m_Localized: LMB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 764281094144
+    m_Localized: "\u9009\u62E9\u6B66\u5668"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 799806849024
+    m_Localized: "Mouse Scroll \u6216 1, 2, 3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 824158978048
+    m_Localized: "(\u6216\u6E38\u620F\u83DC\u5355\uFF09"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
