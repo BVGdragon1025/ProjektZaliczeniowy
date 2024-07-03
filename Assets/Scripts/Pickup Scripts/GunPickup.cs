@@ -58,6 +58,7 @@ public class GunPickup : MonoBehaviour
         {
             _audioSource.PlayOneShot(_audioController.gunPickUp);
             _gunInfo.SetActive(false);
+            StopCoroutine(ShowUnlockText());
             
         }   
         

@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 12
   _gunAmmoHolder: {fileID: 11400000, guid: e413cd7b3a160df42a81b026332f49c1, type: 2}
+  ammoType: 1
 --- !u!1 &6212109245094991740
 GameObject:
   m_ObjectHideFlags: 0

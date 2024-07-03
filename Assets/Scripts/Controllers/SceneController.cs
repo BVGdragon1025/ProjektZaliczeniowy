@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
     public GameObject[] gunMessages;
     [HideInInspector]
     public bool isInMenu = false;
+    public float PickupDelay { get { return pickupsDelay; } }
 
     //Private Variables
     [SerializeField] private float pickupsDelay;
@@ -188,6 +189,33 @@ public class SceneController : MonoBehaviour
             if (ammoPickups[i].CompareTag("CarbineAmmo") && !ammoPickups[i].activeInHierarchy && ammoHolders[1].isWeaponUnlocked)
             {
                 ammoPickups[i].SetActive(true);
+            }
+        }
+        
+    }
+
+
+    //Activates specific Ammo PickUp
+    public void ActivatePickup(AmmoType ammoType)
+    {
+        for(int i = 0; i < ammoPickups.Length; i++)
+        {
+            if (ammoPickups[i].GetComponent<AmmoPickup>().ammoType == ammoType)
+            {
+                ammoPickups[i].SetActive(true);
+            }
+        }
+        
+    }
+
+    //Activates specific Health PickUp
+    public void ActivatePickup(GameObject pickUp)
+    {
+        for(int i = 0; i < healthPickups.Length; i++)
+        {
+            if(pickUp == healthPickups[i])
+            {
+                healthPickups[i].SetActive(true);
             }
         }
     }
