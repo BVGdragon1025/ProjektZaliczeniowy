@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MenuLocalization_pl-PL
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pl-PL
+  m_SharedData: {fileID: 11400000, guid: 548d0d6d2bf002147a4970c714cbc4ca, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 133168365568
+    m_Localized: Graj
+    m_Metadata:
+      m_Items: []
+  - m_Id: 168375353344
+    m_Localized: Autorzy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188226994176
+    m_Localized: Guziki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 219357118464
+    m_Localized: "Wyj\u015Bcie"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238164377600
+    m_Localized: "Powr\xF3t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 259387555840
+    m_Localized: "J\u0119zyk:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288764461056
+    m_Localized: 'Stworzone przez:
+
+      Dominik Nawrot'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334138441728
+    m_Localized: "D\u017Awi\u0119ki pochodz\u0105 z Pixabay i Freesound.org"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381546659840
+    m_Localized: "U\u017Cyte assety podlegaj\u0105 licencji Creative Commons CC0
+      (Domena Publiczna). \nD\u017Awi\u0119ki lincencjonowane pod licencj\u0119 Pixabay
+      (https://pixabay.com/service/license/) i CC0."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 408058855424
+    m_Localized: Wybierz Poziom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 450433908736
+    m_Localized: Magazyn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 486215516160
+    m_Localized: "Porzucony magazyn, gdzie\u015B w Mie\u015Bcie. Wygl\u0105da\u0142
+      na taki, dop\xF3ki nie postanowi\u0142e\u015B do niego wbi\u0107... Walka na
+      bliskim dystansie, ciasne przej\u015Bcia i skrzynie. Mn\xF3stwo skrzy\u0144..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 527315501056
+    m_Localized: Whisky Lovers Club
+    m_Metadata:
+      m_Items: []
+  - m_Id: 563474595840
+    m_Localized: "\"Whisky Lovers Club\" to popularne miejsce spotka\u0144 dla r\xF3\u017Cnych
+      podejrzanych typk\xF3w. Niezbyt rozs\u0105dne by\u0142o wbija\u0107 tutaj i
+      rowala\u0107 to miejsce... Wi\u0119ksza przestrze\u0144 ni\u017C magazyn, ale
+      i wi\u0119cej wrog\xF3w chc\u0105cych twej \u015Bmierci..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 607657394176
+    m_Localized: Guziki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632043077632
+    m_Localized: "Ch\xF3d"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 646156910592
+    m_Localized: Bieg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 671880577024
+    m_Localized: Skok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 699789475840
+    m_Localized: Spacja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718395408384
+    m_Localized: "Strza\u0142"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 734006607872
+    m_Localized: Lewy Przycisk Myszy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 764281094144
+    m_Localized: "Wybierz Bro\u0144"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 799806849024
+    m_Localized: "K\xF3\u0142ko myszy lub 1, 2, 3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 824158978048
+    m_Localized: (lub menu w grze)
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

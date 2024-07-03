@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1623848585202336034}
   m_Layer: 0
   m_Name: AIShotgun
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   canShoot: 0
   _weaponType: 1
   _bullet: {fileID: 7096124351904453833, guid: 0b0b38d87d8c667469cca489f85a8dfa, type: 3}
-  shotgunSpread: 0
+  _shotgunSpread: 0
 --- !u!82 &1623848585202336034
 AudioSource:
   m_ObjectHideFlags: 0

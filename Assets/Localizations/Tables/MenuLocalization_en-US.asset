@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MenuLocalization_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 548d0d6d2bf002147a4970c714cbc4ca, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 133168365568
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 168375353344
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188226994176
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 219357118464
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238164377600
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 259387555840
+    m_Localized: 'Language:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 288764461056
+    m_Localized: 'Created by:
+
+      Dominik Nawrot'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334138441728
+    m_Localized: Various Sounds from Pixabay and Freesound.org
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381546659840
+    m_Localized: 'Used assets are Creative Commons CC0 (Public Domain) licensed.
+
+      Sounds
+      licensed under Pixabay license (https://pixabay.com/service/license/) and CC0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 408058855424
+    m_Localized: Select Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 450433908736
+    m_Localized: Warehouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 486215516160
+    m_Localized: Abandoned warehouse, somewhere in the City. Well, it seemed like
+      one, until you've decided to force your way in... Close quarter fights, tight
+      places and boxes. Lots of boxes...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 527315501056
+    m_Localized: Whisky Lovers Club
+    m_Metadata:
+      m_Items: []
+  - m_Id: 563474595840
+    m_Localized: '"Whisky Lovers Club" is a popular hang-out spot for all sorts of
+      suspicious people. It wasn''t wise of you coming in there and trashing this
+      place... Wider space than waregouse, but more enemies wanting you dead...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 607657394176
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632043077632
+    m_Localized: Walk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 646156910592
+    m_Localized: Run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 671880577024
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 699789475840
+    m_Localized: Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718395408384
+    m_Localized: Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 734006607872
+    m_Localized: Left Mouse Button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 764281094144
+    m_Localized: Select Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 799806849024
+    m_Localized: Mouse Scroll or 1, 2, 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 824158978048
+    m_Localized: (or in-game menu)
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

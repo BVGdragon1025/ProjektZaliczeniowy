@@ -15,6 +15,11 @@ TagManager:
   - CarbineAmmo
   - MenuController
   - AudioController
+  - Weapon
+  - PistolPool
+  - ShotgunPool
+  - CarbinePool
+  - EnemyEyes
   layers:
   - Default
   - TransparentFX

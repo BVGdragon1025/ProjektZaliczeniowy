@@ -5001,3 +5001,5 @@ MonoBehaviour:
   damage: 6
   speed: 15
   range: 100
+  _rb: {fileID: 7096124351904453838}
+  _boxCollider: {fileID: 7096124351904453839}

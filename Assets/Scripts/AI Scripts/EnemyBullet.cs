@@ -6,41 +6,64 @@ public class EnemyBullet : MonoBehaviour
 {
     //Private Variables
     public int damage;
-    [SerializeField] private float speed;
-    [SerializeField] private float range;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _range;
+    private AudioController _audioController;
+    [SerializeField] private BoxCollider _boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
+        _audioController = AudioController.Instance;
+
+    }
+
+    private void OnEnable()
+    {
         Vector3 bulletDirection = -gameObject.transform.forward.normalized;
-        gameObject.GetComponent<Rigidbody>().velocity = bulletDirection * speed;
+        gameObject.GetComponent<Rigidbody>().velocity = bulletDirection * _speed;
+        StartCoroutine(TriggerDelay());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.position.magnitude > range)
+        if(gameObject.transform.position.magnitude > _range)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
-            Destroy(gameObject);
+            other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
+            other.gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
+            gameObject.SetActive(false);
 
 
         }
-        else if (collision.gameObject.CompareTag("Bullet"))
+        else if (other.gameObject.CompareTag("Bullet"))
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        _boxCollider.isTrigger = false;
+    }
+
+    IEnumerator TriggerDelay()
+    {
+        yield return new WaitForFixedUpdate();
+        _boxCollider.isTrigger = true;
+    }
+
 }
