@@ -10,18 +10,22 @@ public class GunPickup : MonoBehaviour
     //Private Variables
     [SerializeField] private int startUpAmmo;
     [SerializeField] private GameObject _gunInfo;
+    [SerializeField] private AmmoType _ammoType;
     private AmmoHolder _ammoHoldder;
     private WeaponSwitch _weaponSwitch;
     private AudioController _audioController;
     private AudioSource _audioSource;
+    private SceneController _sceneController;
 
     // Start is called before the first frame update
     void Start()
     {
+        _sceneController = SceneController.Instance;
         _ammoHoldder = weapon.GetComponent<Weapon>().ammoHolder;
         _weaponSwitch = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponSwitch>();
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        _sceneController.StartCoroutine(_sceneController.ActivatePickups(_ammoType));
     }
 
     // Update is called once per frame

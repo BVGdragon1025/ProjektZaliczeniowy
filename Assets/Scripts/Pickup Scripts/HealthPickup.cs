@@ -11,11 +11,13 @@ public class HealthPickup : MonoBehaviour
     private HealthController _playerHealthController;
     [SerializeField] private int amountOfHealth;
     private AudioController _audioController;
+    private SceneController _sceneController;
     private AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        _sceneController = SceneController.Instance;
         _playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
@@ -27,9 +29,10 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && other.gameObject.GetComponent<HealthController>().CurrentHealth < other.gameObject.GetComponent<HealthController>().maxHealth)
+        if (other.CompareTag("Player") && other.gameObject.GetComponent<HealthController>().CurrentHealth < other.gameObject.GetComponent<HealthController>().maxHealth)
         {
             _playerHealthController.ChangeHealth(amountOfHealth);
+            _sceneController.StartCoroutine(_sceneController.ActivateHealthPickup(gameObject));
             gameObject.SetActive(false);
 
         }
