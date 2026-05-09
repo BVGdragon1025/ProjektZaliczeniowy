@@ -35,6 +35,7 @@ public class SceneController : MonoBehaviour
     private AudioSource _audioSource;
     private PlayerController _player;
     [SerializeField] GameObject _pauseMenu;
+    private PlayerInputActions _inputActions;
 
     // Start is called before the first frame update
 
@@ -46,6 +47,13 @@ public class SceneController : MonoBehaviour
             return;
         }
         Instance = this;
+        _inputActions = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        _inputActions.Enable();
+        _inputActions.Player.PauseMenu.performed += OnOpenMenu;
     }
 
     void Start()
@@ -80,17 +88,17 @@ public class SceneController : MonoBehaviour
         {
             _scoreText[i].text = playerScore.ToString();
         }
-
-        if(Input.GetKeyDown(KeyCode.Escape) && !isInMenu)
-        {
-            ShowPauseMenu();
-        }
-        else if(Input.GetKeyDown(KeyCode.Escape) && isInMenu)
-        {
-            ContinueGame();
-        }
     }
 
+    private void OnDisable() => _inputActions.Player.PauseMenu.performed -= OnOpenMenu;
+
+    private void OnOpenMenu(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (!isInMenu)
+            ShowPauseMenu();
+        else
+            ContinueGame();
+    }
 
     public void CountKill()
     {

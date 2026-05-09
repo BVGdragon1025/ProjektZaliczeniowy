@@ -59,8 +59,10 @@ public class BulletController : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Enemy":
-                other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
-                other.gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
+                if (other.gameObject.TryGetComponent(out HealthController healthController))
+                    healthController.ChangeHealth(-damage);
+                if(other.gameObject.TryGetComponent(out AudioSource audioSource))
+                    audioSource.PlayOneShot(_audioController.enemyHit);
                 gameObject.SetActive(false);
                 break;
             case "EnemyEyes":

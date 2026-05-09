@@ -26,9 +26,12 @@ public class WeaponController : MonoBehaviour
     private Transform _muzzle;
     [SerializeField] private float shotgunSpread;
     private AudioSource _audioSource;
+    private PlayerInputActions _inputActions;
 
+    private void Awake() => _inputActions = new PlayerInputActions();
 
-    // Start is called before the first frame update
+    private void OnEnable() => _inputActions.Player.Shoot.performed += OnShootPerformed;
+
     void Start()
     {
         canShoot = true;
@@ -37,13 +40,12 @@ public class WeaponController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() => _inputActions.Player.Shoot.performed -= OnShootPerformed;
+
+    private void OnShootPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Input.GetMouseButtonDown(0) && !SceneController.Instance.isInMenu)
-        {
+        if (!SceneController.Instance.isInMenu)
             Shoot();
-        }
     }
 
     void Shoot()

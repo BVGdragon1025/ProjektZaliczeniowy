@@ -22,6 +22,7 @@ public class MenuController : MonoBehaviour
     private AudioController _audioController;
     private AudioSource _audioSource;
     private bool _isInMainMenu;
+    private PlayerInputActions _inputActions;
 
     public static MenuController Instance;
 
@@ -36,7 +37,14 @@ public class MenuController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        _inputActions = new PlayerInputActions();
         StartCoroutine(FreezeTime());
+    }
+
+    private void OnEnable() 
+    { 
+        _inputActions.Enable();
+        _inputActions.Player.PauseMenu.performed += OnOpenMenu;
     }
 
     // Start is called before the first frame update
@@ -52,10 +60,11 @@ public class MenuController : MonoBehaviour
         MainMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() => _inputActions.Player.PauseMenu.performed -= OnOpenMenu;
+
+    private void OnOpenMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_isInMainMenu)
+        if (!_isInMainMenu)
         {
             MainMenu();
             _audioSource.PlayOneShot(_audioController.menuSelect);

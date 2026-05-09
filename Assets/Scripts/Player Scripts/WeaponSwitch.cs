@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponSwitch : MonoBehaviour
 {
@@ -9,8 +11,18 @@ public class WeaponSwitch : MonoBehaviour
 
     //Private Variables
     private UIController _uIController;
+    private PlayerInputActions _inputActions;
 
-    // Start is called before the first frame update
+    private void Awake() => _inputActions = new PlayerInputActions();
+
+    private void OnEnable()
+    {
+        _inputActions.Enable();
+        _inputActions.Player.WeponSlot1.performed += OnWeaponOneChosen;
+        _inputActions.Player.WeponSlot2.performed += OnWeaponTwoChosen;
+        _inputActions.Player.WeponSlot3.performed += OnWeaponThreeChosen;
+    }
+
     void Start()
     {
         _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
@@ -22,52 +34,56 @@ public class WeaponSwitch : MonoBehaviour
     {
         int previousWeapon = currentWeapon;
         AmmoHolder ammoHolder = transform.GetChild(currentWeapon).GetComponent<Weapon>().ammoHolder;
+        float scrollWheel = _inputActions.Player.ChangeWeapons.ReadValue<float>();
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (scrollWheel > 0f)
         {
             if(currentWeapon >= transform.childCount - 1)
-            {
                 currentWeapon = 0;
-            }
             else
-            {
                 currentWeapon++;
-            }
-
         }
 
-        if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if(scrollWheel < 0f)
         {
             if(currentWeapon <= 0)
-            {
                 currentWeapon = transform.childCount - 1;
-            }
             else
-            {
                 currentWeapon--;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            currentWeapon = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
-        {
-            currentWeapon = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
-        {
-            currentWeapon = 2;
         }
 
         if(previousWeapon != currentWeapon)
-        {
             SwitchWeapon();
-        }
 
         _uIController.UpdateAmmoDisplay(currentWeapon, ammoHolder);
 
+    }
+
+    private void OnDisable()
+    {
+        _inputActions.Player.WeponSlot1.performed -= OnWeaponOneChosen;
+        _inputActions.Player.WeponSlot2.performed -= OnWeaponTwoChosen;
+        _inputActions.Player.WeponSlot3.performed -= OnWeaponThreeChosen;
+    }
+
+    private void OnWeaponOneChosen(InputAction.CallbackContext context) 
+    { 
+        currentWeapon = 0; 
+        SwitchWeapon();
+    }
+
+    private void OnWeaponTwoChosen(InputAction.CallbackContext context)
+    {
+        if (transform.childCount >= 2)
+            currentWeapon = 1;
+        SwitchWeapon();
+    }
+
+    private void OnWeaponThreeChosen(InputAction.CallbackContext context)
+    {
+        if (transform.childCount >= 3)
+            currentWeapon = 2;
+        SwitchWeapon();
     }
 
     public void SwitchWeapon()

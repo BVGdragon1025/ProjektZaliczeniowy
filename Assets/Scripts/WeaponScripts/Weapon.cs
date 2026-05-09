@@ -27,6 +27,7 @@ public abstract class Weapon : MonoBehaviour
     //Private Variables
     [SerializeField]
     private float _shotDelay;
+    private PlayerInputActions _inputActions;
 
     //Protected Variables
     [SerializeField]
@@ -37,9 +38,17 @@ public abstract class Weapon : MonoBehaviour
 
     private void Awake()
     {
+        _inputActions = new PlayerInputActions();
         pooler = GetComponent<ObjectPooler>();
         pooler.pooledObject = bullet;
     }
+
+    private void OnEnable()
+    {
+        _inputActions.Enable();
+        _inputActions.Player.Shoot.performed += OnShootPerformed;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,13 +59,12 @@ public abstract class Weapon : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() => _inputActions.Player.Shoot.performed -= OnShootPerformed;
+
+    private void OnShootPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if(Input.GetMouseButtonDown(0) && !SceneController.Instance.isInMenu)
-        {
+        if (!SceneController.Instance.isInMenu)
             Shoot();
-        }
     }
 
     public void Shoot()
