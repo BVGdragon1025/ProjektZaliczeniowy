@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
     public GameObject[] gunMessages;
     [HideInInspector]
     public bool isInMenu = false;
+    public float PickupDelay { get { return pickupsDelay; } }
 
     //Private Variables
     [SerializeField] private float pickupsDelay;
@@ -54,7 +55,7 @@ public class SceneController : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         ResetGuns();
         ammoHolders[2].isWeaponUnlocked = true;
-        InvokeRepeating(nameof(SpawnPickups), 0, pickupsDelay);
+        Invoke(nameof(SpawnPickups), 0.0f);
     }
 
     // Update is called once per frame
@@ -174,7 +175,7 @@ public class SceneController : MonoBehaviour
                 ammoPickups[i].SetActive(true);
             }
         }
-
+        /*
         for (int i = 0; i < ammoPickups.Length; i++)
         {
             if (ammoPickups[i].CompareTag("ShotgunAmmo") && !ammoPickups[i].activeInHierarchy && ammoHolders[0].isWeaponUnlocked)
@@ -190,7 +191,56 @@ public class SceneController : MonoBehaviour
                 ammoPickups[i].SetActive(true);
             }
         }
+        */
     }
+
+
+    //Activates all specific Ammo PickUps
+    public IEnumerator ActivatePickups(AmmoType ammoType)
+    {
+        for(int i = 0; i < ammoPickups.Length; i++)
+        {
+            if (ammoPickups[i].GetComponent<AmmoPickup>().ammoType == ammoType)
+            {
+                Debug.Log($"Ammo pickup {ammoPickups[i].name} spawn start!");
+                yield return new WaitForSeconds(pickupsDelay);
+                Debug.Log($"Ammo pickup {ammoPickups[i].name} spawn finished!");
+                ammoPickups[i].SetActive(true);
+            }
+        }
+        
+    }
+
+    //Activates specific Health PickUp
+    public IEnumerator ActivateHealthPickup(GameObject pickUp)
+    {
+        for(int i = 0; i < healthPickups.Length; i++)
+        {
+            if(pickUp == healthPickups[i])
+            {
+                Debug.Log($"Health pickup {pickUp.name} spawn start!");
+                yield return new WaitForSeconds(pickupsDelay);
+                Debug.Log($"Health pickup {pickUp.name} spawn finished!");
+                healthPickups[i].SetActive(true);
+            }
+        }
+    }
+
+    public IEnumerator ActivateAmmoPickup(GameObject pickUp)
+    {
+        for (int i = 0; i < ammoPickups.Length; i++)
+        {
+            if (ammoPickups[i] == pickUp)
+            {
+                Debug.Log($"Ammo pickup {pickUp.name} spawn start!");
+                yield return new WaitForSeconds(pickupsDelay);
+                Debug.Log($"Ammo pickup {pickUp.name} spawn finished!");
+                ammoPickups[i].SetActive(true);
+            }
+        }
+    }
+
+
 
     private void DecreaseSpawnTimer(GameObject[] spawnersList, float spawnDelay)
     {

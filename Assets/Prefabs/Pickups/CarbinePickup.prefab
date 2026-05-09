@@ -114,6 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 6230428116589272233, guid: c16d4b7e43b423841a88fd9087c479a6, type: 3}
   startUpAmmo: 30
+  _gunInfo: {fileID: 0}
+  _ammoType: 2
 --- !u!1 &870287937473202848
 GameObject:
   m_ObjectHideFlags: 0

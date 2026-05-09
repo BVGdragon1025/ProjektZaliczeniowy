@@ -69,7 +69,6 @@ public class MenuController : MonoBehaviour
         _creditsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _levelSelectionMenu.SetActive(false);
-        //transform.SetLocalPositionAndRotation(_mainMenuPos, Quaternion.Euler(-14.21f, 17.21f, 0f));
         _camera.transform.position = _mainMenuPos;
         _camera.transform.rotation = Quaternion.Euler(-14.21f, 17.21f, 0f);
         _cameraSpotlight.enabled = false;
@@ -83,7 +82,6 @@ public class MenuController : MonoBehaviour
         _creditsMenu.SetActive(true);
         _controlsMenu.SetActive(false);
         _levelSelectionMenu.SetActive(false);
-        //transform.SetLocalPositionAndRotation(_creditsPos, Quaternion.Euler(-9, 90, 0));
         _camera.transform.position = _creditsPos;
         _camera.transform.rotation = Quaternion.Euler(-9, 90, 0);
         _cameraSpotlight.enabled = false;
@@ -97,7 +95,6 @@ public class MenuController : MonoBehaviour
         _creditsMenu.SetActive(false);
         _controlsMenu.SetActive(true);
         _levelSelectionMenu.SetActive(false);
-        //transform.SetLocalPositionAndRotation(_controlsMenuPos, Quaternion.Euler(39f, 180f, 0f));
         _camera.transform.position = _controlsMenuPos;
         _camera.transform.rotation = Quaternion.Euler(39f, 180f, 0f);
         _cameraSpotlight.enabled = false;
@@ -121,7 +118,6 @@ public class MenuController : MonoBehaviour
         _creditsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _levelSelectionMenu.SetActive(true);
-        //transform.SetLocalPositionAndRotation(_levelScreenPos, Quaternion.Euler(0, 90f, 0));
         _camera.transform.position = _levelScreenPos;
         _camera.transform.rotation = Quaternion.Euler(0, 90f, 0);
         _cameraSpotlight.enabled = true;

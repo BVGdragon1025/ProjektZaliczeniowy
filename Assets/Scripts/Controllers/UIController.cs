@@ -73,13 +73,13 @@ public class UIController : MonoBehaviour
         switch (weaponType)
         {
             case 0:
-                _pistolCrosshair.gameObject.SetActive(enabled);
+                _pistolCrosshair.SetActive(enabled);
                 break;
             case 1:
-                _shotgunCrosshair.gameObject.SetActive(enabled);
+                _shotgunCrosshair.SetActive(enabled);
                 break;
             case 2:
-                _carbineCrosshair.gameObject.SetActive(enabled);
+                _carbineCrosshair.SetActive(enabled);
                 break;
             default:
                 Debug.Log("Something went wrong with Crosshair Display!");

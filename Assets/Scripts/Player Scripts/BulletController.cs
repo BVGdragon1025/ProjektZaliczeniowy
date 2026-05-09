@@ -76,24 +76,6 @@ public class BulletController : MonoBehaviour
                 break;
 
         }
-        /*
-        if (other.gameObject.CompareTag("Enemy"))
-        {   
-            other.gameObject.GetComponent<HealthController>().ChangeHealth(-damage);
-            other.gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
-            gameObject.SetActive(false);
-            
-
-        }
-        else if (other.gameObject.CompareTag("Bullet"))
-        {
-            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-        */
     }
 
     private void OnDisable()
