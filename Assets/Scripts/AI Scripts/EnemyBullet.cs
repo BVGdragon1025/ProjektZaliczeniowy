@@ -21,7 +21,7 @@ public class EnemyBullet : MonoBehaviour
     private void OnEnable()
     {
         Vector3 bulletDirection = -gameObject.transform.forward.normalized;
-        gameObject.GetComponent<Rigidbody>().velocity = bulletDirection * _speed;
+        gameObject.GetComponent<Rigidbody>().linearVelocity = bulletDirection * _speed;
         StartCoroutine(TriggerDelay());
 
     }

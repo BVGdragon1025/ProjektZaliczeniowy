@@ -25,24 +25,24 @@ public class BulletController : MonoBehaviour
     {
         Transform cameraTransform = Camera.main.transform;
         
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit)) //Jeœli promieñ uderzy³ w coœ
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit)) //Jeï¿½li promieï¿½ uderzyï¿½ w coï¿½
         {
             Vector3 bulletDirection = (hit.point + -gameObject.transform.position).normalized;
-            _rb.velocity = bulletDirection * speed;
+            _rb.linearVelocity = bulletDirection * speed;
         }
         else
         {
-            //Dla przypadków kiedy gracz np. strzela w niebo
+            //Dla przypadkï¿½w kiedy gracz np. strzela w niebo
             Vector3 bulletDirection = -gameObject.transform.forward.normalized;
-            _rb.velocity = bulletDirection * speed;
+            _rb.linearVelocity = bulletDirection * speed;
 
         }
 
         StartCoroutine(TriggerDelay());
 
-        //Musi tak byæ
-        //Jak dobrze rozumiem, transform.forward bierze wektor do przodu na podstawie obiektu przypiêtego do skryptu
-        //A da³em ujemny, bo Ÿle obróci³em kule xD
+        //Musi tak byï¿½
+        //Jak dobrze rozumiem, transform.forward bierze wektor do przodu na podstawie obiektu przypiï¿½tego do skryptu
+        //A daï¿½em ujemny, bo ï¿½le obrï¿½ciï¿½em kule xD
     }
 
     // Update is called once per frame

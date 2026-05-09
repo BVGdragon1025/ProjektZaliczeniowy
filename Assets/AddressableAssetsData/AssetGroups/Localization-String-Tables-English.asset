@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-English
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-English
-  m_Data:
-    m_SerializedData: []
   m_GUID: f85d9804e72a11b4a81577f549edda58
   m_SerializeEntries:
-  - m_GUID: 67530a28e6d7ece4d819abddc96154fc
-    m_Address: MenuLocalization_en-US
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-US
-    - Preload
   - m_GUID: 4c60d6c29e8fd8f41bdb0ee9ee40e4e9
     m_Address: GameplayLocalization_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67530a28e6d7ece4d819abddc96154fc
+    m_Address: MenuLocalization_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 5d0f2e4de3efd794dbc3edee2a52dc4b, type: 2}
   m_SchemaSet:
