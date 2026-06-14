@@ -67,6 +67,8 @@ public class BulletController : MonoBehaviour
                 Physics.IgnoreCollision(_boxCollider, _boxCollider);
                 break;
             default:
+                if(other.TryGetComponent(out Rigidbody rb))
+                    rb.AddForceAtPosition(_rb.linearVelocity * 10, rb.transform.position);
                 gameObject.SetActive(false);
                 break;
 
