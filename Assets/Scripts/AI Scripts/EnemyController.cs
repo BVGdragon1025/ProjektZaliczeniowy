@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -8,16 +6,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _score;
     public int Score { get { return _score; } }
     private AudioController _audioController;
+    private AudioSource _audioSource;
 
-    private void Awake()
-    {
-        _audioController = AudioController.Instance;
-    }
+    private void Awake() => _audioSource = GetComponent<AudioSource>();
 
-    private void OnDisable()
-    {
-        gameObject.GetComponent<AudioSource>().PlayOneShot(_audioController.enemyHit);
-        
-    }
+    private void Start() => _audioController = AudioController.Instance;
+
+    private void OnDisable() => _audioSource.PlayOneShot(_audioController.enemyHit);
 
 }

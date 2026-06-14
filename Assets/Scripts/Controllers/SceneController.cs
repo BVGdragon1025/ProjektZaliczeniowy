@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class SceneController : MonoBehaviour
 {
@@ -20,11 +20,11 @@ public class SceneController : MonoBehaviour
     public GameObject[] gunMessages;
     [HideInInspector]
     public bool isInMenu = false;
-    public float PickupDelay { get { return pickupsDelay; } }
+    public float PickupDelay { get { return _pickupsDelay; } }
 
     //Private Variables
-    [SerializeField] private float pickupsDelay;
-    [SerializeField] private float enemiesToSpeedUpSpawn;
+    [SerializeField, FormerlySerializedAs("pickupsDelay")] private float _pickupsDelay;
+    [SerializeField, FormerlySerializedAs("enemiesToSpeedUpSpawn")] private float _enemiesToSpeedUpSpawn;
     [SerializeField] private int _killCount;
     [SerializeField] private int _spawnCount;
     [SerializeField] private int _spawnLimit;
@@ -36,8 +36,6 @@ public class SceneController : MonoBehaviour
     private PlayerController _player;
     [SerializeField] GameObject _pauseMenu;
     private PlayerInputActions _inputActions;
-
-    // Start is called before the first frame update
 
     private void Awake()
     {
@@ -66,28 +64,21 @@ public class SceneController : MonoBehaviour
         Invoke(nameof(SpawnPickups), 0.0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        DecreaseSpawnTimer(pistolEnemySpawners, enemiesToSpeedUpSpawn);
-        DecreaseSpawnTimer(shotgunEnemySpawners, enemiesToSpeedUpSpawn);
-        DecreaseSpawnTimer(carbineEnemySpawners, enemiesToSpeedUpSpawn);
+        DecreaseSpawnTimer(pistolEnemySpawners, _enemiesToSpeedUpSpawn);
+        DecreaseSpawnTimer(shotgunEnemySpawners, _enemiesToSpeedUpSpawn);
+        DecreaseSpawnTimer(carbineEnemySpawners, _enemiesToSpeedUpSpawn);
         _spawnCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         UnlockWeapon();
 
         if(_spawnCount >= _spawnLimit)
-        {
             StopSpawners(true);
-        }
         else
-        {
             StopSpawners(false);
-        }
         
         for(int i = 0; i < _scoreText.Length; i++)
-        {
             _scoreText[i].text = playerScore.ToString();
-        }
     }
 
     private void OnDisable() => _inputActions.Player.PauseMenu.performed -= OnOpenMenu;
@@ -100,25 +91,15 @@ public class SceneController : MonoBehaviour
             ContinueGame();
     }
 
-    public void CountKill()
-    {
-        _killCount++;
-        
-    }
+    public void CountKill() => _killCount++;
 
     private void UnlockWeapon()
     {
         if(_killCount == _killsToUnlockShotgun && !ammoHolders[0].isWeaponUnlocked)
-        {
             gunPickups[0].SetActive(true);
 
-        }
-
         if(_killCount == _killsToUnlockCarbine && !ammoHolders[1].isWeaponUnlocked)
-        {
             gunPickups[1].SetActive(true);
-
-        }
     }
 
     private void ResetGuns()
@@ -132,57 +113,34 @@ public class SceneController : MonoBehaviour
                 Debug.Log(ammoHolders[i].name);
             }
             else
-            {
                 ammoHolders[i].ammoCount = 0;
-            }
-            
         }
     }
 
     private void StopSpawners(bool enabled)
     {
         for(int i = 0; i < pistolEnemySpawners.Length; i++)
-        {
             pistolEnemySpawners[i].SetActive(!enabled);
-        }
 
         for(int i = 0; i < shotgunEnemySpawners.Length; i++)
-        {
             if(_killCount >= _killsToUnlockShotgun)
-            {
                 shotgunEnemySpawners[i].SetActive(!enabled);
-            }
-            
-        }
 
         for(int i = 0; i < carbineEnemySpawners.Length; i++)
-        {
             if (_killCount >= _killsToUnlockCarbine)
-            {
                 carbineEnemySpawners[i].SetActive(!enabled);
-            }
-                
-        }
-
     }
 
     private void SpawnPickups()
     {
         for (int i = 0; i < healthPickups.Length; i++)
-        {
             if (!healthPickups[i].activeInHierarchy)
-            {
                 healthPickups[i].SetActive(true);
-            }
-        }
+
 
         for (int i = 0; i < ammoPickups.Length; i++)
-        {
             if (ammoPickups[i].CompareTag("PistolAmmo") && !ammoPickups[i].activeInHierarchy)
-            {
                 ammoPickups[i].SetActive(true);
-            }
-        }
         /*
         for (int i = 0; i < ammoPickups.Length; i++)
         {
@@ -211,7 +169,7 @@ public class SceneController : MonoBehaviour
             if (ammoPickups[i].GetComponent<AmmoPickup>().ammoType == ammoType)
             {
                 Debug.Log($"Ammo pickup {ammoPickups[i].name} spawn start!");
-                yield return new WaitForSeconds(pickupsDelay);
+                yield return new WaitForSeconds(_pickupsDelay);
                 Debug.Log($"Ammo pickup {ammoPickups[i].name} spawn finished!");
                 ammoPickups[i].SetActive(true);
             }
@@ -227,7 +185,7 @@ public class SceneController : MonoBehaviour
             if(pickUp == healthPickups[i])
             {
                 Debug.Log($"Health pickup {pickUp.name} spawn start!");
-                yield return new WaitForSeconds(pickupsDelay);
+                yield return new WaitForSeconds(_pickupsDelay);
                 Debug.Log($"Health pickup {pickUp.name} spawn finished!");
                 healthPickups[i].SetActive(true);
             }
@@ -241,27 +199,19 @@ public class SceneController : MonoBehaviour
             if (ammoPickups[i] == pickUp)
             {
                 Debug.Log($"Ammo pickup {pickUp.name} spawn start!");
-                yield return new WaitForSeconds(pickupsDelay);
+                yield return new WaitForSeconds(_pickupsDelay);
                 Debug.Log($"Ammo pickup {pickUp.name} spawn finished!");
                 ammoPickups[i].SetActive(true);
             }
         }
     }
 
-
-
     private void DecreaseSpawnTimer(GameObject[] spawnersList, float spawnDelay)
     {
         if(_killCount % spawnDelay == 0)
-        {
             for(int i = 0; i < spawnersList.Length; i++)
-            {
                 if (spawnersList[i].activeInHierarchy && spawnersList[i].GetComponent<SpawnController>().spawnInterval >= spawnDelay)
-                {
                     spawnersList[i].GetComponent<SpawnController>().spawnInterval -= 0.5f;
-                }
-            }
-        }
     }
 
     public void ContinueGame()
@@ -296,16 +246,8 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void PlayHoverSound() => _audioSource.PlayOneShot(_audioController.menuHover);
 
-
-    public void PlayHoverSound()
-    {
-        _audioSource.PlayOneShot(_audioController.menuHover);
-    }
-
-    public void PlaySelectSound()
-    {
-        _audioSource.PlayOneShot(_audioController.menuSelect);
-    }
+    public void PlaySelectSound() => _audioSource.PlayOneShot(_audioController.menuSelect);
 
 }

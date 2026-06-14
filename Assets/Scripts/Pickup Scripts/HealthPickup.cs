@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    //Public Variables
-    
-
     //Private Variables
-    private HealthController _playerHealthController;
     [SerializeField] private int amountOfHealth;
-    private AudioController _audioController;
     private SceneController _sceneController;
     private AudioSource _audioSource;
 
@@ -18,33 +11,25 @@ public class HealthPickup : MonoBehaviour
     void Start()
     {
         _sceneController = SceneController.Instance;
-        _playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
 
-    private void Update()
-    {
-        transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
-    }
+    private void Update() => transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.gameObject.GetComponent<HealthController>().CurrentHealth < other.gameObject.GetComponent<HealthController>().maxHealth)
+        if (other.CompareTag("Player"))
         {
-            _playerHealthController.ChangeHealth(amountOfHealth);
-            _sceneController.StartCoroutine(_sceneController.ActivateHealthPickup(gameObject));
-            gameObject.SetActive(false);
-
+            if(other.TryGetComponent(out HealthController healthController))
+            {
+                if(healthController.CurrentHealth < healthController.maxHealth)
+                {
+                    _audioSource.PlayOneShot(AudioController.Instance.healthPickUp);
+                    healthController.ChangeHealth(amountOfHealth);
+                    _sceneController.StartCoroutine(_sceneController.ActivateHealthPickup(gameObject));
+                    gameObject.SetActive(false);
+                }
+            }
         }
-        else
-        {
-            Debug.Log("Player has full health!");
-        }
-
-    }
-
-    private void OnDisable()
-    {
-        _audioSource.PlayOneShot(AudioController.Instance.healthPickUp);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthController : MonoBehaviour
@@ -22,51 +20,43 @@ public class HealthController : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        _currentHealth = maxHealth;
-    }
+    private void OnEnable() => _currentHealth = maxHealth;
 
     public void ChangeHealth(float deltaHealth)
     {
-
         _currentHealth = Mathf.Clamp(_currentHealth + deltaHealth, 0, maxHealth);
         _uIController.DisplayHealth(_currentHealth);
         CheckHealth();
-
     }
 
     public void CheckHealth()
     {
         if(_currentHealth <= 0)
-        {
             CharacterDie();
-        }
     }
 
     private void CharacterDie()
     {
         SceneController instance = SceneController.Instance;
 
-        if (gameObject.CompareTag("Enemy"))
+        switch (gameObject.tag)
         {
-            //Debug.Log("Character died! | Character name: " + gameObject.name);
-            instance.CountKill();
-            instance.playerScore += _enemyController.Score;
-            gameObject.SetActive(false);
-        }
-        else if(gameObject.CompareTag("Player"))
-        {
-            //Debug.Log("Player Died!");
-            _uIController.ShowDeathScreen();
-            gameObject.GetComponent<PlayerController>().canMove = false;
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Debug.Log("Something went wrong with character dying. Maybe you forgot to add another tag?");
-        }
-        
-    }
+            case "Enemy":
+                instance.CountKill();
+                instance.playerScore += _enemyController.Score;
+                gameObject.SetActive(false);
+                break;
 
+            case "Player":
+                _uIController.ShowDeathScreen();
+                gameObject.GetComponent<PlayerController>().canMove = false;
+                Time.timeScale = 0;
+                break;
+
+            default: 
+                Debug.Log("Something went wrong with character dying. Maybe you forgot to add another tag?");
+                break;
+
+        }
+    }
 }

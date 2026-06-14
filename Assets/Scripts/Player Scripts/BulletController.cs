@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -12,20 +11,16 @@ public class BulletController : MonoBehaviour
     //Private Variables
     private AudioController _audioController;
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private BoxCollider _boxCollider;
+    [SerializeField] private Collider _boxCollider;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        _audioController = AudioController.Instance;
-
-    }
+    void Start() => _audioController = AudioController.Instance;
 
     private void OnEnable()
     {
         Transform cameraTransform = Camera.main.transform;
         
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit)) //Je�li promie� uderzy� w co�
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit))
         {
             Vector3 bulletDirection = (hit.point + -gameObject.transform.position).normalized;
             _rb.linearVelocity = bulletDirection * speed;
@@ -49,9 +44,7 @@ public class BulletController : MonoBehaviour
     private void Update()
     {
         if (gameObject.transform.position.magnitude > range)
-        {
             gameObject.SetActive(false);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,7 +64,7 @@ public class BulletController : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
             case "Bullet":
-                Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+                Physics.IgnoreCollision(_boxCollider, _boxCollider);
                 break;
             default:
                 gameObject.SetActive(false);
@@ -80,10 +73,7 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        _boxCollider.isTrigger = false;
-    }
+    private void OnDisable() => _boxCollider.isTrigger = false; 
 
     IEnumerator TriggerDelay()
     {

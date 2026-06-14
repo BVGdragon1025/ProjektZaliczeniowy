@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectPooler))]
@@ -49,8 +48,6 @@ public abstract class Weapon : MonoBehaviour
         _inputActions.Player.Shoot.performed += OnShootPerformed;
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         canShoot = true;
@@ -70,10 +67,7 @@ public abstract class Weapon : MonoBehaviour
     public void Shoot()
     {
         if (ammoHolder.ammoCount > 0 && canShoot)
-        {
             StartCoroutine(ShootBullet());
-
-        }
     }
 
     /// <summary>
@@ -83,8 +77,6 @@ public abstract class Weapon : MonoBehaviour
     {
         GameObject pooledObject = pooler.GetObjectPool();
         pooledObject.transform.parent = null;
-        //pooledObject.transform.position = muzzle.transform.position;
-        //pooledObject.transform.rotation = muzzle.transform.rotation;
         pooledObject.transform.SetPositionAndRotation(muzzle.transform.position, muzzle.transform.rotation);
         pooledObject.SetActive(true);
     }
