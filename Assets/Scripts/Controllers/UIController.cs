@@ -14,6 +14,16 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject _carbineCrosshair;
     [SerializeField] GameObject _gameOverScreen;
 
+    public static UIController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(gameObject);
+
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -9,15 +9,14 @@ public class HealthController : MonoBehaviour
     //Private Variables
     [SerializeField] private float _currentHealth;
     private EnemyController _enemyController;
-    UIController _uIController;
+    private UIController _uIController;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        _uIController = UIController.Instance;
         _enemyController = GetComponent<EnemyController>();
-
     }
 
     private void OnEnable() => _currentHealth = maxHealth;

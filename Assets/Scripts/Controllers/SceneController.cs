@@ -95,10 +95,10 @@ public class SceneController : MonoBehaviour
 
     private void UnlockWeapon()
     {
-        if(_killCount == _killsToUnlockShotgun && !ammoHolders[0].isWeaponUnlocked)
+        if(_killCount >= _killsToUnlockShotgun && !ammoHolders[0].isWeaponUnlocked && !gunPickups[0].activeInHierarchy)
             gunPickups[0].SetActive(true);
 
-        if(_killCount == _killsToUnlockCarbine && !ammoHolders[1].isWeaponUnlocked)
+        if(_killCount >= _killsToUnlockCarbine && !ammoHolders[1].isWeaponUnlocked && !gunPickups[1].activeInHierarchy)
             gunPickups[1].SetActive(true);
     }
 

@@ -31,14 +31,9 @@ public class AmmoPickup : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<AmmoController>().ChangeAmmo(_gunAmmoHolder, amount);
+            _audioSource.PlayOneShot(AudioController.Instance.ammoPickUp);
             _sceneController.StartCoroutine(_sceneController.ActivateAmmoPickup(gameObject));
             gameObject.SetActive(false);
         }
-    }
-
-    private void OnDisable()
-    {
-        _audioSource.PlayOneShot(_audioController.ammoPickUp);
-        
     }
 }

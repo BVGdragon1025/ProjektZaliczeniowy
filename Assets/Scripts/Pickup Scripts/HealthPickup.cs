@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     //Private Variables
-    [SerializeField] private int amountOfHealth;
+    [SerializeField] private int _amountOfHealth;
     private SceneController _sceneController;
     private AudioSource _audioSource;
 
@@ -20,12 +20,12 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(other.TryGetComponent(out HealthController healthController))
+            if(other.TryGetComponent(out IHealth health))
             {
-                if(healthController.CurrentHealth < healthController.maxHealth)
+                if(health.CurrentHealth < health.MaxHealth)
                 {
                     _audioSource.PlayOneShot(AudioController.Instance.healthPickUp);
-                    healthController.ChangeHealth(amountOfHealth);
+                    health.ChangeHealth(_amountOfHealth);
                     _sceneController.StartCoroutine(_sceneController.ActivateHealthPickup(gameObject));
                     gameObject.SetActive(false);
                 }

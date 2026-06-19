@@ -3,5 +3,6 @@
     None,
     Patrol,
     Chase,
-    Attack
+    Attack,
+    Death
 }

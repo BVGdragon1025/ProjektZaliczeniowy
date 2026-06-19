@@ -10,8 +10,14 @@ public class BulletController : MonoBehaviour
 
     //Private Variables
     private AudioController _audioController;
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private Collider _boxCollider;
+    private Rigidbody _rb;
+    private Collider _collider;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
+    }
 
     // Start is called before the first frame update
     void Start() => _audioController = AudioController.Instance;
@@ -49,38 +55,39 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (other.gameObject.tag)
+        if(other.CompareTag("Bullet"))
+            Physics.IgnoreCollision(_collider, _collider);
+        else
         {
-            case "Enemy":
-                if (other.gameObject.TryGetComponent(out HealthController healthController))
-                    healthController.ChangeHealth(-damage);
-                if(other.gameObject.TryGetComponent(out AudioSource audioSource))
+            if (other.TryGetComponent(out IHealth health))
+                if (other.CompareTag("Enemy"))
+                    health.ChangeHealth(-damage);
+
+            if (other.TryGetComponent(out EnemyEyes enemyEyes))
+                enemyEyes.ChangeHealth(-damage * 1.5f);
+
+            if(other.TryGetComponent(out AudioSource audioSource))
+            {
+                if (other.CompareTag("Enemy"))
                     audioSource.PlayOneShot(_audioController.enemyHit);
-                gameObject.SetActive(false);
-                break;
-            case "EnemyEyes":
-                other.gameObject.GetComponentInParent<HealthController>().ChangeHealth(-damage * 1.5f);
-                other.gameObject.GetComponentInParent<AudioSource>().PlayOneShot(_audioController.enemyHitCrit);
-                gameObject.SetActive(false);
-                break;
-            case "Bullet":
-                Physics.IgnoreCollision(_boxCollider, _boxCollider);
-                break;
-            default:
-                if(other.TryGetComponent(out Rigidbody rb))
-                    rb.AddForceAtPosition(_rb.linearVelocity * 10, rb.transform.position);
-                gameObject.SetActive(false);
-                break;
+                if (other.CompareTag("EnemyEyes"))
+                    audioSource.PlayOneShot(_audioController.enemyHitCrit);
+            }
+
+            if (other.TryGetComponent(out Rigidbody rb))
+                rb.AddForceAtPosition(_rb.linearVelocity * 10, rb.transform.position);
+
+            gameObject.SetActive(false);
 
         }
     }
 
-    private void OnDisable() => _boxCollider.isTrigger = false; 
+    private void OnDisable() => _collider.isTrigger = false; 
 
     IEnumerator TriggerDelay()
     {
         yield return new WaitForFixedUpdate();
-        _boxCollider.isTrigger = true;
+        _collider.isTrigger = true;
         Debug.Log($"{gameObject.name} is trigger!");
     }
 

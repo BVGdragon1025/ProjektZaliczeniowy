@@ -1,7 +1,7 @@
 using UnityEngine;
 [RequireComponent (typeof(CharacterController))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IHealth
 {
     //Public Variables
 
@@ -19,11 +19,14 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
-    HealthController _healthController;
     private UIController _uIController;
     private AudioSource _audioSource;
     private AudioController _audioController;
     private PlayerInputActions _inputActions;
+
+    public float CurrentHealth { get; set; }
+    [field: SerializeField]
+    public float MaxHealth { get; set; }
 
     private void Awake() => _inputActions = new PlayerInputActions();
 
@@ -32,10 +35,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CurrentHealth = MaxHealth;
         _audioSource = GetComponent<AudioSource>();
-        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
-        _uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
-        _healthController = gameObject.GetComponent<HealthController>();
+        _audioController = AudioController.Instance;
+        _uIController = UIController.Instance;
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _uIController.DisplayHealth(_healthController.CurrentHealth);
+        _uIController.DisplayHealth(CurrentHealth);
 
         Vector2 walkVector = _inputActions.Player.Walk.ReadValue<Vector2>();
 
@@ -82,10 +85,30 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.TryGetComponent(out EnemyBullet bullet))
         {
-            _healthController.ChangeHealth(-bullet.damage);
+            ChangeHealth(-bullet.damage);
             _audioSource.PlayOneShot(_audioController.playerHit);
-            Debug.Log("Player Health: " + _healthController.CurrentHealth);
+            Debug.Log("Player Health: " + CurrentHealth);
         }
 
+    }
+
+    public void ChangeHealth(float healthAmount)
+    {
+        CurrentHealth = Mathf.Clamp(CurrentHealth + healthAmount, 0, MaxHealth);
+        _uIController.DisplayHealth(CurrentHealth);
+        CheckRemainingHealth();
+    }
+
+    public void CheckRemainingHealth()
+    {
+        if (CurrentHealth <= 0)
+            KillCharacter();
+    }
+
+    public void KillCharacter()
+    {
+        _uIController.ShowDeathScreen();
+        canMove = false;
+        Time.timeScale = 0;
     }
 }
