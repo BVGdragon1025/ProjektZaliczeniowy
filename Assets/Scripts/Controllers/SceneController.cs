@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -30,12 +31,13 @@ public class SceneController : MonoBehaviour
     [SerializeField] private int _spawnLimit;
     [SerializeField] private int _killsToUnlockShotgun;
     [SerializeField] private int _killsToUnlockCarbine;
-    [SerializeField] private TextMeshProUGUI[] _scoreText;
     private AudioController _audioController;
     private AudioSource _audioSource;
     private PlayerController _player;
-    [SerializeField] GameObject _pauseMenu;
     private PlayerInputActions _inputActions;
+
+    public static event Action<bool> OnPauseMenu;
+    public static event Action<int> OnScored;
 
     private void Awake()
     {
@@ -76,9 +78,6 @@ public class SceneController : MonoBehaviour
             StopSpawners(true);
         else
             StopSpawners(false);
-        
-        for(int i = 0; i < _scoreText.Length; i++)
-            _scoreText[i].text = playerScore.ToString();
     }
 
     private void OnDisable() => _inputActions.Player.PauseMenu.performed -= OnOpenMenu;
@@ -91,7 +90,12 @@ public class SceneController : MonoBehaviour
             ContinueGame();
     }
 
-    public void CountKill() => _killCount++;
+    public void CountKill(int score) 
+    {
+        playerScore += score;
+        _killCount++;
+        OnScored?.Invoke(playerScore);
+    }
 
     private void UnlockWeapon()
     {
@@ -216,7 +220,7 @@ public class SceneController : MonoBehaviour
 
     public void ContinueGame()
     {
-        _pauseMenu.SetActive(false);
+        OnPauseMenu?.Invoke(false);
         _player.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -237,7 +241,7 @@ public class SceneController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isInMenu = true;
-        _pauseMenu.SetActive(true);
+        OnPauseMenu?.Invoke(true);
     }
 
     public void GoToMenu()

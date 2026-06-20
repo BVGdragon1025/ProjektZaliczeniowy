@@ -24442,6 +24442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5549314709232154381, guid: 68726bb1e57b37e45bb43cda392cef2a,
         type: 3}
+      propertyPath: _pickupsDelay
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549314709232154381, guid: 68726bb1e57b37e45bb43cda392cef2a,
+        type: 3}
       propertyPath: _killsToUnlockCarbine
       value: 12
       objectReference: {fileID: 0}
@@ -24464,6 +24469,11 @@ PrefabInstance:
         type: 3}
       propertyPath: gunPickups.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549314709232154381, guid: 68726bb1e57b37e45bb43cda392cef2a,
+        type: 3}
+      propertyPath: _enemiesToSpeedUpSpawn
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5549314709232154381, guid: 68726bb1e57b37e45bb43cda392cef2a,
         type: 3}

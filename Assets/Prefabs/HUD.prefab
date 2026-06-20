@@ -5095,6 +5095,10 @@ MonoBehaviour:
   _shotgunCrosshair: {fileID: 5885067179101469706}
   _carbineCrosshair: {fileID: 5885067178523285644}
   _gameOverScreen: {fileID: 645624294}
+  _pauseMenu: {fileID: 606455498340316637}
+  _scoreTexts:
+  - {fileID: 1549047565}
+  - {fileID: 687605500}
 --- !u!1 &8767926444679814776
 GameObject:
   m_ObjectHideFlags: 0

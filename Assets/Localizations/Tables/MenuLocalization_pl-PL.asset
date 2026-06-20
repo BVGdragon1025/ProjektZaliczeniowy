@@ -123,6 +123,18 @@ MonoBehaviour:
     m_Localized: (lub menu w grze)
     m_Metadata:
       m_Items: []
+  - m_Id: 342659077792587776
+    m_Localized: Zaginiona Dolina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 342659129000845312
+    m_Localized: "Nikt nie by\u0142 w stanie znale\u017A\u0107 tego miejsca, a\u017C
+      pewnego dnia uda\u0142o ci si\u0119 rozszyfrowa\u0107 wskaz\xF3wki. Zabra\u0142e\u015B
+      artfefakt zaginionego ludu, ale teraz masz na g\u0142owie powa\u017Cniejsze
+      problemy - uzbrojonych m\u0119\u017Cczyzn, kt\xF3rzy pod\u0105\u017Cali za
+      tob\u0105. Powodzenia!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -41,8 +41,7 @@ public class HealthController : MonoBehaviour
         switch (gameObject.tag)
         {
             case "Enemy":
-                instance.CountKill();
-                instance.playerScore += _enemyController.Score;
+                instance.CountKill(_enemyController.Score);
                 gameObject.SetActive(false);
                 break;
 

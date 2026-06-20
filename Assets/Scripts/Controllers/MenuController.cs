@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] GameObject _levelOneDescription;
     [SerializeField] GameObject _levelTwoDescription;
+    [SerializeField] GameObject _levelThreeDescription;
     [SerializeField] GameObject _languageDropdown;
     private Vector3 _mainMenuPos;
     private Vector3 _creditsPos;
@@ -52,7 +53,7 @@ public class MenuController : MonoBehaviour
         _audioSource = gameObject.GetComponent<AudioSource>();
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _mainMenuPos = new Vector3(-4.94f, 1.18f, -5.55f);
-        _levelScreenPos = new Vector3(-9.32f, 2.17f, 2.67f);
+        _levelScreenPos = new Vector3(-9.32f, 2.17f, 2.6f);
         _controlsMenuPos = new Vector3(-3.47f, 6.28f, 1.44f);
         _creditsPos = new Vector3(1.33f, 2.17f, -0.63f);
         _cameraSpotlight = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Light>();
@@ -151,10 +152,17 @@ public class MenuController : MonoBehaviour
             case ("Level1"):
                 _levelOneDescription.SetActive(true);
                 _levelTwoDescription.SetActive(false);
+                _levelThreeDescription.SetActive(false);
                 break;
             case ("Level2"):
                 _levelTwoDescription.SetActive(true);
                 _levelOneDescription.SetActive(false);
+                _levelThreeDescription.SetActive(false);
+                break;
+            case ("Level3"):
+                _levelTwoDescription.SetActive(false);
+                _levelOneDescription.SetActive(false);
+                _levelThreeDescription.SetActive(true);
                 break;
             default:
                 Debug.Log("Wrong level name!");

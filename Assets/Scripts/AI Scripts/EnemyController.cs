@@ -42,8 +42,7 @@ public class EnemyController : MonoBehaviour, IHealth
 
     public void KillCharacter()
     {
-        _sceneController.playerScore += _score;
-        _sceneController.CountKill();
+        _sceneController.CountKill(_score);
         _rb.isKinematic = false;
         //_rb.AddForceAtPosition(-transform.forward * 10.0f, _rb.centerOfMass, ForceMode.Impulse);
         Invoke(nameof(DisableObject), 3.0f);
