@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunPickup : MonoBehaviour
@@ -8,8 +8,7 @@ public class GunPickup : MonoBehaviour
     public GameObject weapon;
 
     //Private Variables
-    [SerializeField] private int startUpAmmo;
-    [SerializeField] private GameObject _gunInfo;
+    [SerializeField] private int _startUpAmmo;
     [SerializeField] private AmmoType _ammoType;
     private AmmoHolder _ammoHoldder;
     private WeaponSwitch _weaponSwitch;
@@ -17,43 +16,32 @@ public class GunPickup : MonoBehaviour
     private AudioSource _audioSource;
     private SceneController _sceneController;
 
+    public static event Action<int, bool> OnWeaponUnlocked;
+
     // Start is called before the first frame update
     void Start()
     {
         _sceneController = SceneController.Instance;
         _ammoHoldder = weapon.GetComponent<Weapon>().ammoHolder;
         _weaponSwitch = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponSwitch>();
-        _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        _audioController = AudioController.Instance;
         _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
         _sceneController.StartCoroutine(_sceneController.ActivatePickups(_ammoType));
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
-    }
+    void Update() => transform.RotateAround(gameObject.transform.position, Vector3.up, 15 * Time.deltaTime);
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             _ammoHoldder.isWeaponUnlocked = true;
-            if(weapon.name == "Shotgun")
-            {
-                _weaponSwitch.currentWeapon = 1;
-                _weaponSwitch.SwitchWeapon();
-            }
-            else if(weapon.name == "Carbine")
-            {
-                _weaponSwitch.currentWeapon = 2;
-                _weaponSwitch.SwitchWeapon();
-            }
-            _ammoHoldder.ammoCount = startUpAmmo;
+            _weaponSwitch.currentWeapon = (int)_ammoType;
+            _weaponSwitch.SwitchWeapon();
+            _ammoHoldder.ammoCount = _startUpAmmo;
         }
-
         gameObject.SetActive(false);
-
     }
 
     private void OnDisable()
@@ -61,23 +49,18 @@ public class GunPickup : MonoBehaviour
         if (_ammoHoldder.isWeaponUnlocked)
         {
             _audioSource.PlayOneShot(_audioController.gunPickUp);
-            _gunInfo.SetActive(false);
+            OnWeaponUnlocked?.Invoke((int)_ammoType - 1, false);
             StopCoroutine(ShowUnlockText());
-            
         }   
-        
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(ShowUnlockText());
-    }
+    private void OnEnable() => StartCoroutine(ShowUnlockText());
 
     IEnumerator ShowUnlockText()
     {
-        _gunInfo.SetActive(true);
+        OnWeaponUnlocked?.Invoke((int)_ammoType - 1, true);
         yield return new WaitForSeconds(5f);
-        _gunInfo.SetActive(false);
+        OnWeaponUnlocked?.Invoke((int)_ammoType - 1, false);
         Debug.Log("Time's up!");
     }
 

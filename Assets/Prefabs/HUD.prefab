@@ -5099,6 +5099,9 @@ MonoBehaviour:
   _scoreTexts:
   - {fileID: 1549047565}
   - {fileID: 687605500}
+  _unlockObjects:
+  - {fileID: 647557579}
+  - {fileID: 933144989}
 --- !u!1 &8767926444679814776
 GameObject:
   m_ObjectHideFlags: 0

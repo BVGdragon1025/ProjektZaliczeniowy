@@ -10,6 +10,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private float _range;
     private AudioController _audioController;
     private Collider _collider;
+    private Vector3 _startPos;
 
     private void Awake() => _collider = GetComponent<Collider>();
 
@@ -17,6 +18,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnEnable()
     {
+        _startPos = transform.position;
         Vector3 bulletDirection = -gameObject.transform.forward.normalized;
         gameObject.GetComponent<Rigidbody>().linearVelocity = bulletDirection * _speed;
         StartCoroutine(TriggerDelay());
@@ -24,7 +26,7 @@ public class EnemyBullet : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.transform.position.magnitude > _range)
+        if(Vector3.Distance(_startPos, transform.position) > _range)
             gameObject.SetActive(false);
     }
 

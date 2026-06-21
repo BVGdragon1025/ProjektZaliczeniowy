@@ -4,21 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPooler))]
 public abstract class Weapon : MonoBehaviour
 {
-    //Public Variables
     public AmmoHolder ammoHolder;
-    // ENCAPSULATION
     public float ShotDelay {
         get
-            {
-                if (_shotDelay < 0)
-                {
-                    return _shotDelay = 0;
-                }
-                else
-                {
-                    return _shotDelay;
-                }
-            }
+        {
+            if (_shotDelay < 0)
+                return _shotDelay = 0;
+            else
+                return _shotDelay;
+        }
         set { _shotDelay = value;} 
     }
     public bool canShoot = true;
@@ -79,6 +73,7 @@ public abstract class Weapon : MonoBehaviour
         pooledObject.transform.parent = null;
         pooledObject.transform.SetPositionAndRotation(muzzle.transform.position, muzzle.transform.rotation);
         pooledObject.SetActive(true);
+        Debug.Log($"Object status: {pooledObject.activeInHierarchy}");
     }
 
     /// <summary>
@@ -93,6 +88,7 @@ public abstract class Weapon : MonoBehaviour
         Debug.Log($"Received spread: {spreadX}, {spreadY}");
         pooledObject.transform.SetPositionAndRotation(muzzle.transform.position, muzzle.transform.rotation * Quaternion.Euler(spreadX, spreadY, 0));
         pooledObject.SetActive(true);
+        Debug.Log($"Object status: {pooledObject.activeInHierarchy}");
     }
 
     public abstract IEnumerator ShootBullet();

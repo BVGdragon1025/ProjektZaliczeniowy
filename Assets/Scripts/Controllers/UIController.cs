@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private TextMeshProUGUI[] _scoreTexts;
+    [SerializeField] private GameObject[] _unlockObjects;
 
     private Color _orangeColor = new Color32(255, 127, 39, 255);
 
@@ -30,6 +31,7 @@ public class UIController : MonoBehaviour
     { 
         SceneController.OnPauseMenu += SetPauseMenuVisibility;
         SceneController.OnScored += SetScoreTexts;
+        GunPickup.OnWeaponUnlocked += SetWeaponUnlockVisibility;
     }
 
     private void Start() => _healthCounter.gameObject.SetActive(true);
@@ -38,9 +40,12 @@ public class UIController : MonoBehaviour
     { 
         SceneController.OnPauseMenu -= SetPauseMenuVisibility; 
         SceneController.OnScored -= SetScoreTexts;
+        GunPickup.OnWeaponUnlocked -= SetWeaponUnlockVisibility;
     }
 
     private void SetPauseMenuVisibility(bool isVisible) => _pauseMenu.SetActive(isVisible);
+
+    private void SetWeaponUnlockVisibility(int weaponType, bool isActive) => _unlockObjects[weaponType].SetActive(isActive);
 
     private void SetScoreTexts(int score)
     {

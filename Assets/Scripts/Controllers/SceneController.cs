@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -18,7 +17,6 @@ public class SceneController : MonoBehaviour
     public GameObject[] healthPickups;
     public GameObject[] gunPickups;
     public AmmoHolder[] ammoHolders;
-    public GameObject[] gunMessages;
     [HideInInspector]
     public bool isInMenu = false;
     public float PickupDelay { get { return _pickupsDelay; } }
@@ -26,8 +24,8 @@ public class SceneController : MonoBehaviour
     //Private Variables
     [SerializeField, FormerlySerializedAs("pickupsDelay")] private float _pickupsDelay;
     [SerializeField, FormerlySerializedAs("enemiesToSpeedUpSpawn")] private float _enemiesToSpeedUpSpawn;
-    [SerializeField] private int _killCount;
-    [SerializeField] private int _spawnCount;
+    private int _killCount;
+    private int _spawnCount;
     [SerializeField] private int _spawnLimit;
     [SerializeField] private int _killsToUnlockShotgun;
     [SerializeField] private int _killsToUnlockCarbine;

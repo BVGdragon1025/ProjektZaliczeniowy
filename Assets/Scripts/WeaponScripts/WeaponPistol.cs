@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// INHERITANCE
 public class WeaponPistol : Weapon
 {
-
-    // ABSTRACTION
     public override IEnumerator ShootBullet()
     {
         canShoot = false;

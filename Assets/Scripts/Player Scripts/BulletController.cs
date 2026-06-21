@@ -12,6 +12,7 @@ public class BulletController : MonoBehaviour
     private AudioController _audioController;
     private Rigidbody _rb;
     private Collider _collider;
+    private Vector3 _spawnPosition;
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class BulletController : MonoBehaviour
 
     private void OnEnable()
     {
+        _spawnPosition = transform.position;
+
         Transform cameraTransform = Camera.main.transform;
         
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit))
@@ -49,7 +52,7 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (gameObject.transform.position.magnitude > range)
+        if (Vector3.Distance(_spawnPosition, transform.position) > range)
             gameObject.SetActive(false);
     }
 
