@@ -29532,7 +29532,7 @@ PrefabInstance:
     - target: {fileID: 5549314709232154381, guid: 68726bb1e57b37e45bb43cda392cef2a,
         type: 3}
       propertyPath: _spawnLimit
-      value: 64
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 5549314709232154381, guid: 68726bb1e57b37e45bb43cda392cef2a,
         type: 3}
@@ -30470,12 +30470,12 @@ PrefabInstance:
     - target: {fileID: 8165740632496849090, guid: e331b51d8d2590f4d8258f96d907b1a6,
         type: 3}
       propertyPath: m_SlopeLimit
-      value: 60
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8165740632496849090, guid: e331b51d8d2590f4d8258f96d907b1a6,
         type: 3}
       propertyPath: m_StepOffset
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8165740632496852796, guid: e331b51d8d2590f4d8258f96d907b1a6,
         type: 3}
