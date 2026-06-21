@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Shared
-  m_Data:
-    m_SerializedData: []
   m_GUID: 0cedd90ace6b9434a80584e45bbf101b
   m_SerializeEntries:
   - m_GUID: 548d0d6d2bf002147a4970c714cbc4ca
     m_Address: Assets/Localizations/Tables/MenuLocalization Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 592d49fc4574fef439b9d3953789fc41
     m_Address: Assets/Localizations/Tables/GameplayLocalization Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 5d0f2e4de3efd794dbc3edee2a52dc4b, type: 2}
   m_SchemaSet:

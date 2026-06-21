@@ -31,7 +31,7 @@ public class FSM : MonoBehaviour
         }
     }
 
-    private void TransitionToState(FSMStateType StateName)
+    void TransitionToState(FSMStateType StateName)
     {
         CurrentState.OnExit();
         CurrentState = GetState(StateName);

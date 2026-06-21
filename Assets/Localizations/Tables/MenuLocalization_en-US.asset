@@ -123,6 +123,16 @@ MonoBehaviour:
     m_Localized: (or in-game menu)
     m_Metadata:
       m_Items: []
+  - m_Id: 342659077792587776
+    m_Localized: Lost Valley
+    m_Metadata:
+      m_Items: []
+  - m_Id: 342659129000845312
+    m_Localized: No one was able to find this place, until one day you've deciphered
+      a series of clues. You've snatched the artifact of a lost tribe, but now you
+      have bigger problems - armed man, who have followed your steps. Good luck!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

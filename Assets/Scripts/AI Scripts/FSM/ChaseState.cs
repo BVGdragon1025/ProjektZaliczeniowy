@@ -9,36 +9,36 @@ public class ChaseState : MonoBehaviour, IFSMState
 
     private Transform _player = null;
     private NavMeshAgent ThisAgent = null;
+    private EnemyController _enemyController;
 
     void Awake()
     {
         _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        _enemyController = GetComponent<EnemyController>();
         ThisAgent = GetComponent<NavMeshAgent>();
     }
 
     public void OnEnter()
     {
+        if (!ThisAgent.enabled)
+            ThisAgent.enabled = true;
         ThisAgent.isStopped = false;
     }
 
-    public void OnExit()
-    {
-        ThisAgent.isStopped = true;
-    }
+    public void OnExit() => ThisAgent.isStopped = true;
 
-    public void DoAction()
-    {
-        ThisAgent.SetDestination(_player.position);
-    }
+    public void DoAction() => ThisAgent.SetDestination(_player.position);
 
     public FSMStateType ShouldTransitionToState()
     {
         float distanceToDest = Vector3.Distance(transform.position, _player.position);
-        if (distanceToDest <= minChaseDistance)
-        {
-            return FSMStateType.Attack;
-        }
 
-        return FSMStateType.Chase;
+        if (_enemyController.CurrentHealth <= 0)
+            return FSMStateType.Death;
+
+        if (distanceToDest <= minChaseDistance)
+            return FSMStateType.Attack;
+
+        return StateName;
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarbineAmmoHolder
   m_EditorClassIdentifier: 
   maxAmmoCount: 150
-  ammoCount: 4
+  ammoCount: 0
   isWeaponUnlocked: 0

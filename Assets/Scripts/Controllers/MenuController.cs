@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +12,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] GameObject _levelOneDescription;
     [SerializeField] GameObject _levelTwoDescription;
+    [SerializeField] GameObject _levelThreeDescription;
     [SerializeField] GameObject _languageDropdown;
     private Vector3 _mainMenuPos;
     private Vector3 _creditsPos;
@@ -22,6 +22,7 @@ public class MenuController : MonoBehaviour
     private AudioController _audioController;
     private AudioSource _audioSource;
     private bool _isInMainMenu;
+    private PlayerInputActions _inputActions;
 
     public static MenuController Instance;
 
@@ -36,7 +37,14 @@ public class MenuController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        _inputActions = new PlayerInputActions();
         StartCoroutine(FreezeTime());
+    }
+
+    private void OnEnable() 
+    { 
+        _inputActions.Enable();
+        _inputActions.Player.PauseMenu.performed += OnOpenMenu;
     }
 
     // Start is called before the first frame update
@@ -45,17 +53,18 @@ public class MenuController : MonoBehaviour
         _audioSource = gameObject.GetComponent<AudioSource>();
         _audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         _mainMenuPos = new Vector3(-4.94f, 1.18f, -5.55f);
-        _levelScreenPos = new Vector3(-9.32f, 2.17f, 2.67f);
+        _levelScreenPos = new Vector3(-9.32f, 2.17f, 2.6f);
         _controlsMenuPos = new Vector3(-3.47f, 6.28f, 1.44f);
         _creditsPos = new Vector3(1.33f, 2.17f, -0.63f);
         _cameraSpotlight = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Light>();
         MainMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() => _inputActions.Player.PauseMenu.performed -= OnOpenMenu;
+
+    private void OnOpenMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !_isInMainMenu)
+        if (!_isInMainMenu)
         {
             MainMenu();
             _audioSource.PlayOneShot(_audioController.menuSelect);
@@ -143,10 +152,17 @@ public class MenuController : MonoBehaviour
             case ("Level1"):
                 _levelOneDescription.SetActive(true);
                 _levelTwoDescription.SetActive(false);
+                _levelThreeDescription.SetActive(false);
                 break;
             case ("Level2"):
                 _levelTwoDescription.SetActive(true);
                 _levelOneDescription.SetActive(false);
+                _levelThreeDescription.SetActive(false);
+                break;
+            case ("Level3"):
+                _levelTwoDescription.SetActive(false);
+                _levelOneDescription.SetActive(false);
+                _levelThreeDescription.SetActive(true);
                 break;
             default:
                 Debug.Log("Wrong level name!");

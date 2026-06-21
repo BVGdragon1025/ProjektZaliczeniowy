@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class EnemyWeapon : MonoBehaviour
 {
@@ -24,8 +22,6 @@ public class EnemyWeapon : MonoBehaviour
     private AudioController _audioController;
     private ObjectPooler _pooler;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -34,10 +30,7 @@ public class EnemyWeapon : MonoBehaviour
         _pooler = SelectCorrectBulletPool();
     }
 
-    private void OnEnable()
-    {
-        canShoot = true;
-    }
+    private void OnEnable() => canShoot = true;
 
     void GetPooledBullet()
     {
@@ -45,7 +38,6 @@ public class EnemyWeapon : MonoBehaviour
         pooledObject.transform.parent = null;
         pooledObject.transform.SetPositionAndRotation(_muzzle.transform.position, _muzzle.transform.rotation);
         pooledObject.SetActive(true);
-
     }
 
     void GetPooledBullet(float spreadX, float spreadY)

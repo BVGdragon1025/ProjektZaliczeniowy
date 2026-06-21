@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class WeaponController : MonoBehaviour
 {
@@ -26,24 +24,25 @@ public class WeaponController : MonoBehaviour
     private Transform _muzzle;
     [SerializeField] private float shotgunSpread;
     private AudioSource _audioSource;
+    private PlayerInputActions _inputActions;
 
+    private void Awake() => _inputActions = new PlayerInputActions();
 
-    // Start is called before the first frame update
+    private void OnEnable() => _inputActions.Player.Shoot.performed += OnShootPerformed;
+
     void Start()
     {
         canShoot = true;
         _muzzle = gameObject.transform.GetChild(0);
         _audioSource = gameObject.GetComponent<AudioSource>();
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() => _inputActions.Player.Shoot.performed -= OnShootPerformed;
+
+    private void OnShootPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Input.GetMouseButtonDown(0) && !SceneController.Instance.isInMenu)
-        {
+        if (!SceneController.Instance.isInMenu)
             Shoot();
-        }
     }
 
     void Shoot()
@@ -62,17 +61,7 @@ public class WeaponController : MonoBehaviour
                     StartCoroutine(PistolShots());
                     break;
             }
-            
-            
         }
-        
-        Debug.Log("Bullet Shot! | Ammo remaining: " + ammoHolder.ammoCount);
-        
-        if(ammoHolder.ammoCount <= 0)
-        {
-            Debug.Log("Out of ammo!");
-        }
-
     }
 
     IEnumerator CarbineShots()
@@ -87,12 +76,9 @@ public class WeaponController : MonoBehaviour
                 Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation);
                 yield return new WaitForSeconds(shotDelay/3);
             }
-            
-            
         }
         yield return new WaitForSeconds(shotDelay);
         canShoot = true;
-        
     }
 
     IEnumerator PistolShots()
@@ -115,13 +101,11 @@ public class WeaponController : MonoBehaviour
             float randomRangeY = Random.Range(-shotgunSpread, shotgunSpread);
             Instantiate(_bullet, _muzzle.transform.position, _muzzle.transform.rotation * Quaternion.Euler(randomRangeX, randomRangeY, 0)); // Aby ustawiæ k¹t rozrzutu, trzeba pomno¿yæ wyjœciow¹ rotacjê razy now¹ rotacjê (jak przy wektorach)
         }
+
         ammoHolder.ammoCount--;
         _audioSource.PlayOneShot(AudioController.Instance.shotgunShot);
         _audioSource.PlayDelayed(0.6f);
         yield return new WaitForSeconds(shotDelay);
         canShoot = true;
     }
-
-    
-
 }

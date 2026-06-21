@@ -1,48 +1,69 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _pistolAmmoCounter;
-    [SerializeField] TextMeshProUGUI _shotgunAmmoCounter;
-    [SerializeField] TextMeshProUGUI _carbineAmmoCounter;
-    [SerializeField] TextMeshProUGUI _healthCounter;
-    [SerializeField] GameObject _pistolCrosshair;
-    [SerializeField] GameObject _shotgunCrosshair;
-    [SerializeField] GameObject _carbineCrosshair;
-    [SerializeField] GameObject _gameOverScreen;
+    [SerializeField] private TextMeshProUGUI _pistolAmmoCounter;
+    [SerializeField] private TextMeshProUGUI _shotgunAmmoCounter;
+    [SerializeField] private TextMeshProUGUI _carbineAmmoCounter;
+    [SerializeField] private TextMeshProUGUI _healthCounter;
+    [SerializeField] private GameObject _pistolCrosshair;
+    [SerializeField] private GameObject _shotgunCrosshair;
+    [SerializeField] private GameObject _carbineCrosshair;
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private TextMeshProUGUI[] _scoreTexts;
+    [SerializeField] private GameObject[] _unlockObjects;
 
-    // Start is called before the first frame update
-    void Start()
+    private Color _orangeColor = new Color32(255, 127, 39, 255);
+
+    public static UIController Instance { get; private set; }
+
+    private void Awake()
     {
-        _healthCounter.gameObject.SetActive(true);
+        if (Instance != null)
+            Destroy(gameObject);
+
+        Instance = this;
+    }
+
+    private void OnEnable()
+    { 
+        SceneController.OnPauseMenu += SetPauseMenuVisibility;
+        SceneController.OnScored += SetScoreTexts;
+        GunPickup.OnWeaponUnlocked += SetWeaponUnlockVisibility;
+    }
+
+    private void Start() => _healthCounter.gameObject.SetActive(true);
+
+    private void OnDisable()
+    { 
+        SceneController.OnPauseMenu -= SetPauseMenuVisibility; 
+        SceneController.OnScored -= SetScoreTexts;
+        GunPickup.OnWeaponUnlocked -= SetWeaponUnlockVisibility;
+    }
+
+    private void SetPauseMenuVisibility(bool isVisible) => _pauseMenu.SetActive(isVisible);
+
+    private void SetWeaponUnlockVisibility(int weaponType, bool isActive) => _unlockObjects[weaponType].SetActive(isActive);
+
+    private void SetScoreTexts(int score)
+    {
+        for (int i = 0; i < _scoreTexts.Length; i++)
+            _scoreTexts[i].SetText($"{score}");
     }
 
     public void DisplayHealth(float healthAmount)
     {
         _healthCounter.text = healthAmount.ToString();
-        
-        if(healthAmount >= 75)
-        {
-            _healthCounter.color = Color.green;
 
-        }
-        else if(healthAmount < 75 && healthAmount >= 50)
+        _healthCounter.color = healthAmount switch
         {
-            _healthCounter.color = Color.yellow;
-        }
-        else if(healthAmount < 50 && healthAmount >= 25)
-        {
-            Color orange = new Color32(255, 127, 39, 255);
-            _healthCounter.color = orange;
-        }
-        else
-        {
-            _healthCounter.color = Color.red;
-        }
-        
+            >= 75 => Color.green,
+            < 75 and >= 50 => Color.yellow,
+            < 50 and >= 25 => _orangeColor,
+            _ => Color.red,
+        };
     }
 
     public void DisplayAmmoHUD(int weaponType, bool enabled, AmmoHolder weaponAmmoHolder)
@@ -66,7 +87,6 @@ public class UIController : MonoBehaviour
                 break;
         }
     }
-
 
     public void DisplayCrosshair(int weaponType, bool enabled)
     {
@@ -114,13 +134,9 @@ public class UIController : MonoBehaviour
     private void ChangeAmmoDisplayColor(TextMeshProUGUI ammoText, AmmoHolder ammoHolder)
     {
         if(ammoHolder.ammoCount <= 0)
-        {
             ammoText.color = Color.red;
-        }
         else
-        {
             ammoText.color = Color.white;
-        }
     }
 
     public void ShowDeathScreen()
